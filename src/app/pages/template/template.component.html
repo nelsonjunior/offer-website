@@ -1,39 +1,21 @@
 <nb-layout center>
   <nb-layout-header fixed>
-    <div class="header-content">
-      <div class="header-content-wrapper">
-        <img src="assets/logo.png" height="36px" />
-        <button ghost nbButton [nbContextMenu]="categorias" size="medium">
-          <nb-icon icon="menu-2"></nb-icon>
-          Categorias
-        </button>
-        <input
-          type="text"
-          class="search-input"
-          nbInput
-          placeholder="Buscar Oferta"
-          fieldSize="large"
-          [value]="(searchTerm$ | async)?.term"
-          (click)="openSearch()"
-        />
-        <div class="header-actions-wrapper">
-          <nb-search
-            type="rotate-layout"
-            hint="Enter para buscar oferta"
-            placeholder="Pesquisar...">
-          </nb-search>
-          <button nbButton status="primary">
-            <nb-icon icon="plus"></nb-icon>
-          </button>
-          <button nbButton status="default">
-            <nb-icon icon="bell"></nb-icon>
-          </button>
-          <button nbButton outline="" status="primary">Entrar</button>
-        </div>
-      </div>
-    </div>
+    <app-navegation-bar
+      class="header-content"
+      (selectCategory)="onSelectCategory($event)">
+    </app-navegation-bar>
   </nb-layout-header>
   <nb-layout-column style="padding: 10px;">
     <router-outlet></router-outlet>
   </nb-layout-column>
+  <nb-layout-footer *ngIf="footerVisibility$ | async" class="footer">
+    <div class="footer-content">
+      <div class="footer-content-left">
+        <span class="subtitle-2">Offer – Sistema de Ofertas em Lojas Físicas </span>
+      </div>
+      <div class="footer=content-right">
+        <button nbButton ghost size="medium" (click)="hideFooter()"><nb-icon icon="close"></nb-icon></button>
+      </div>
+    </div>
+  </nb-layout-footer>
 </nb-layout>

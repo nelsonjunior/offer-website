@@ -1,0 +1,13 @@
+<div class="offers-filter">
+  <h6>Destaques</h6>
+  <div class="order-content">
+    <span class="subtitle-2">Ordenar por:</span>
+    <nb-select size="tiny" [(ngModel)]="selectedItemNgModel"
+        (selectedChange)="onSelectedChange($event)">
+      <nb-option [value]="0">Mais Recentes</nb-option>
+      <nb-option [value]="1">Mais Antigos</nb-option>
+      <nb-option [value]="2">Mais Baratos</nb-option>
+      <nb-option [value]="3">Mais Caros</nb-option>
+    </nb-select>
+  </div>
+</div>

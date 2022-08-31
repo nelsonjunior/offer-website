@@ -1,0 +1,593 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Tecnologia"
+    },
+    {
+      "id": "2",
+      "name": "Casa"
+    },
+    {
+      "id": "3",
+      "name": "Automóveis"
+    },
+    {
+      "id": "4",
+      "name": "Eletrônicos"
+    },
+    {
+      "id": "5",
+      "name": "Esporte"
+    },
+    {
+      "id": "6",
+      "name": "Lazer"
+    },
+    {
+      "id": "7",
+      "name": "Saúde"
+    },
+    {
+      "id": "8",
+      "name": "Outros"
+    }
+  ],
+  "offers": [
+    {
+      "id": 1,
+      "description": "Qui consectetur sunt quis in.",
+      "price": 2368.36,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 78,
+        "likes": 5,
+        "comments": 53
+      },
+      "store": {
+        "id": "630eb6f79898b1c7bfc12d8f",
+        "name": "Snips"
+      }
+    },
+    {
+      "id": 2,
+      "description": "Aliquip velit eiusmod amet aute eiusmod.",
+      "price": 1413.26,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 70,
+        "likes": 41,
+        "comments": 6
+      },
+      "store": {
+        "id": "630eb6f7b3038f6d4abbf1c8",
+        "name": "Glukgluk"
+      }
+    },
+    {
+      "id": 3,
+      "description": "Velit duis nisi elit amet cupidatat.",
+      "price": 3095.37,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 58,
+        "likes": 78,
+        "comments": 37
+      },
+      "store": {
+        "id": "630eb6f73046fd5403f79ab2",
+        "name": "Undertap"
+      }
+    },
+    {
+      "id": 4,
+      "description": "Ut deserunt officia sunt cupidatat.",
+      "price": 3760.83,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 59,
+        "likes": 33,
+        "comments": 29
+      },
+      "store": {
+        "id": "630eb6f75ab759937df973d9",
+        "name": "Buzzmaker"
+      }
+    },
+    {
+      "id": 5,
+      "description": "Proident officia quis irure aute.",
+      "price": 3725.77,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 68,
+        "likes": 66,
+        "comments": 31
+      },
+      "store": {
+        "id": "630eb6f730d0dfe475199cf1",
+        "name": "Repetwire"
+      }
+    },
+    {
+      "id": 6,
+      "description": "Et duis ullamco duis quis non.",
+      "price": 2306.75,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 39,
+        "likes": 51,
+        "comments": 85
+      },
+      "store": {
+        "id": "630eb6f739d5571cfdb87ec5",
+        "name": "Intradisk"
+      }
+    },
+    {
+      "id": 7,
+      "description": "Est ut pariatur proident ullamco.",
+      "price": 929.55,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 81,
+        "likes": 33,
+        "comments": 48
+      },
+      "store": {
+        "id": "630eb6f79b09c35716bf0f86",
+        "name": "Cubix"
+      }
+    },
+    {
+      "id": 8,
+      "description": "Fugiat Lorem minim est minim.",
+      "price": 4529.49,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 13,
+        "likes": 88,
+        "comments": 86
+      },
+      "store": {
+        "id": "630eb6f79c9d99e36d443abe",
+        "name": "Plasmos"
+      }
+    },
+    {
+      "id": 9,
+      "description": "Eiusmod proident esse velit reprehenderit velit.",
+      "price": 2387.58,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 100,
+        "likes": 13,
+        "comments": 21
+      },
+      "store": {
+        "id": "630eb6f7eac8c9be9fdb8173",
+        "name": "Inear"
+      }
+    },
+    {
+      "id": 10,
+      "description": "Culpa amet ipsum voluptate exercitation occaecat.",
+      "price": 1024.99,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 14,
+        "likes": 22,
+        "comments": 32
+      },
+      "store": {
+        "id": "630eb6f71b4e97dadf6ea1c0",
+        "name": "Irack"
+      }
+    },
+    {
+      "id": 11,
+      "description": "Sint esse ullamco sunt ullamco esse.",
+      "price": 1803.66,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 31,
+        "likes": 77,
+        "comments": 14
+      },
+      "store": {
+        "id": "630eb6f7b0308f5628693787",
+        "name": "Bittor"
+      }
+    },
+    {
+      "id": 12,
+      "description": "Cupidatat laboris dolor ex mollit.",
+      "price": 736.29,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 13,
+        "likes": 81,
+        "comments": 16
+      },
+      "store": {
+        "id": "630eb6f777e0bc6becdd62cd",
+        "name": "Krag"
+      }
+    },
+    {
+      "id": 13,
+      "description": "Mollit ad mollit laboris incididunt incididunt.",
+      "price": 1432.32,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 95,
+        "likes": 13,
+        "comments": 71
+      },
+      "store": {
+        "id": "630eb6f7d2b935dac2a5941b",
+        "name": "Imkan"
+      }
+    },
+    {
+      "id": 14,
+      "description": "Ea ipsum eu sunt reprehenderit velit.",
+      "price": 519.22,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 83,
+        "likes": 72,
+        "comments": 60
+      },
+      "store": {
+        "id": "630eb6f75595b571fb797371",
+        "name": "Extro"
+      }
+    },
+    {
+      "id": 15,
+      "description": "Id aliqua nisi non commodo.",
+      "price": 1084.28,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 53,
+        "likes": 18,
+        "comments": 82
+      },
+      "store": {
+        "id": "630eb6f7c20ce2353b0da5e8",
+        "name": "Verbus"
+      }
+    },
+    {
+      "id": 16,
+      "description": "Id incididunt do do nostrud in.",
+      "price": 4544.21,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 2,
+        "likes": 6,
+        "comments": 95
+      },
+      "store": {
+        "id": "630eb6f781eca4f0d5777a9f",
+        "name": "Zentry"
+      }
+    },
+    {
+      "id": 17,
+      "description": "Eiusmod et enim culpa sint.",
+      "price": 4829.47,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 25,
+        "likes": 66,
+        "comments": 58
+      },
+      "store": {
+        "id": "630eb6f72adc5147e3e3e51f",
+        "name": "Eventage"
+      }
+    },
+    {
+      "id": 18,
+      "description": "Nostrud eiusmod adipisicing non ad.",
+      "price": 580.82,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 52,
+        "likes": 53,
+        "comments": 75
+      },
+      "store": {
+        "id": "630eb6f713028f03ba8481aa",
+        "name": "Enervate"
+      }
+    },
+    {
+      "id": 19,
+      "description": "Veniam laborum occaecat ipsum deserunt adipisicing.",
+      "price": 3533.85,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 86,
+        "likes": 44,
+        "comments": 83
+      },
+      "store": {
+        "id": "630eb6f7d242e6b6f4998616",
+        "name": "Fibrodyne"
+      }
+    },
+    {
+      "id": 20,
+      "description": "Id magna amet ut quis.",
+      "price": 4237.53,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 99,
+        "likes": 61,
+        "comments": 92
+      },
+      "store": {
+        "id": "630eb6f78aa219bbfc909fb5",
+        "name": "Medalert"
+      }
+    },
+    {
+      "id": 21,
+      "description": "Culpa enim veniam cillum tempor laborum.",
+      "price": 3022.86,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 97,
+        "likes": 28,
+        "comments": 84
+      },
+      "store": {
+        "id": "630eb6f7b256379f6f1941c0",
+        "name": "Naxdis"
+      }
+    },
+    {
+      "id": 22,
+      "description": "Laborum irure culpa labore aliqua.",
+      "price": 844.01,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 48,
+        "likes": 97,
+        "comments": 87
+      },
+      "store": {
+        "id": "630eb6f777ee10741dddf94f",
+        "name": "Manufact"
+      }
+    },
+    {
+      "id": 23,
+      "description": "Ad adipisicing est id consectetur veniam.",
+      "price": 1787.96,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 79,
+        "likes": 77,
+        "comments": 6
+      },
+      "store": {
+        "id": "630eb6f7b50bb323862fabc2",
+        "name": "Magnafone"
+      }
+    },
+    {
+      "id": 24,
+      "description": "Irure pariatur minim ut et dolor.",
+      "price": 2670.35,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 58,
+        "likes": 43,
+        "comments": 11
+      },
+      "store": {
+        "id": "630eb6f743ccd680f101fb29",
+        "name": "Fortean"
+      }
+    },
+    {
+      "id": 25,
+      "description": "Voluptate sint irure cillum exercitation enim.",
+      "price": 1589.28,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 4,
+        "likes": 4,
+        "comments": 69
+      },
+      "store": {
+        "id": "630eb6f787d0d8346972ab3c",
+        "name": "Pyrami"
+      }
+    },
+    {
+      "id": 26,
+      "description": "Anim nostrud tempor proident officia consequat.",
+      "price": 4433.34,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 69,
+        "likes": 35,
+        "comments": 57
+      },
+      "store": {
+        "id": "630eb6f7176b4963d7818449",
+        "name": "Rockyard"
+      }
+    },
+    {
+      "id": 27,
+      "description": "Deserunt ad aute minim laboris veniam.",
+      "price": 142.86,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 100,
+        "likes": 49,
+        "comments": 19
+      },
+      "store": {
+        "id": "630eb6f7cd647b184fe2e590",
+        "name": "Moreganic"
+      }
+    },
+    {
+      "id": 28,
+      "description": "Cillum quis commodo reprehenderit dolor cupidatat.",
+      "price": 495.45,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 93,
+        "likes": 52,
+        "comments": 69
+      },
+      "store": {
+        "id": "630eb6f78ca6e463b2fe4968",
+        "name": "Insurity"
+      }
+    },
+    {
+      "id": 29,
+      "description": "Eiusmod in veniam culpa aliquip.",
+      "price": 2537.42,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 25,
+        "likes": 46,
+        "comments": 2
+      },
+      "store": {
+        "id": "630eb6f745719cff141edd59",
+        "name": "Slambda"
+      }
+    },
+    {
+      "id": 30,
+      "description": "Irure laborum enim ea labore sint.",
+      "price": 2250.38,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 82,
+        "likes": 87,
+        "comments": 54
+      },
+      "store": {
+        "id": "630eb6f7cdc9d20d50241ee6",
+        "name": "Comdom"
+      }
+    },
+    {
+      "id": 31,
+      "description": "Fugiat proident tempor tempor cillum velit.",
+      "price": 2849.75,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 70,
+        "likes": 25,
+        "comments": 8
+      },
+      "store": {
+        "id": "630eb6f7855f31c149abd25d",
+        "name": "Candecor"
+      }
+    },
+    {
+      "id": 32,
+      "description": "Incididunt officia consequat tempor anim ut.",
+      "price": 2298.53,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 63,
+        "likes": 56,
+        "comments": 9
+      },
+      "store": {
+        "id": "630eb6f78d91c8089526d5c8",
+        "name": "Valreda"
+      }
+    },
+    {
+      "id": 33,
+      "description": "Quis dolor irure enim eu tempor.",
+      "price": 2627.84,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 94,
+        "likes": 53,
+        "comments": 39
+      },
+      "store": {
+        "id": "630eb6f7c5b2bf70b78cdec2",
+        "name": "Grainspot"
+      }
+    },
+    {
+      "id": 34,
+      "description": "In magna ad voluptate velit deserunt.",
+      "price": 3558.63,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 45,
+        "likes": 49,
+        "comments": 59
+      },
+      "store": {
+        "id": "630eb6f7d395e8cc4f9d86e1",
+        "name": "Talkola"
+      }
+    },
+    {
+      "id": 35,
+      "description": "Occaecat ad deserunt qui tempor.",
+      "price": 4451.25,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 90,
+        "likes": 13,
+        "comments": 21
+      },
+      "store": {
+        "id": "630eb6f7fb32cf025db59da9",
+        "name": "Isosphere"
+      }
+    },
+    {
+      "id": 36,
+      "description": "Elit labore sint in irure proident.",
+      "price": 4170.47,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 75,
+        "likes": 19,
+        "comments": 10
+      },
+      "store": {
+        "id": "630eb6f7418df888a59d48c9",
+        "name": "Phormula"
+      }
+    },
+    {
+      "id": 37,
+      "description": "Occaecat labore deserunt magna tempor nostrud.",
+      "price": 3373.81,
+      "image": "https://picsum.photos/210/220",
+      "metrics": {
+        "views": 80,
+        "likes": 90,
+        "comments": 88
+      },
+      "store": {
+        "id": "630eb6f764239e6345e88f76",
+        "name": "Sunclipse"
+      }
+    }
+  ]
+}

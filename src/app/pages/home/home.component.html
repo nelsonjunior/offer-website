@@ -1,1 +1,41 @@
-<p>Conteudo Tela Principal</p>
+<div class="home-content">
+  <div class="offers-content">
+    <app-offers-title (changeOrder)="onChangeOrder($event)"></app-offers-title>
+    <div class="offers-itens"
+      infiniteScroll
+      [immediateCheck]="true"
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="loadNext(offerData)">
+      <nb-list>
+        <nb-list-item *ngFor="let offerChunk of offerData.offers" style="padding: 0px;">
+          <div class="offers-itens-row">
+            <app-card-offer *ngFor="let offer of offerChunk" [offer]="offer"></app-card-offer>
+          </div>
+        </nb-list-item>
+        <nb-list-item *ngIf="offerData.loading" [nbSpinner]="true" nbSpinnerSize="small" nbSpinnerStatus="info">
+          <span class="subtitle-2">Recuperando ofertas</span>
+        </nb-list-item>
+
+      </nb-list>
+    </div>
+  </div>
+  <div class="adverts-content">
+    <app-adverts-filter (changeFilter)="onChangeFilter($event)">
+    </app-adverts-filter>
+    <div class="adverts-publish">
+      <span class="subtitle-2">Publicidade</span>
+    </div>
+    <div class="adverts-social">
+      <span class="subtitle-2">Siga nas redes sociais</span>
+      <div class="adverts-social-icons">
+        <fa-icon size="2x" [icon]="facebook"></fa-icon>
+        <fa-icon size="2x" [icon]="instagram"></fa-icon>
+        <fa-icon size="2x" [icon]="twitter"></fa-icon>
+        <fa-icon size="2x" [icon]="mail"></fa-icon>
+        <fa-icon size="2x" [icon]="shared"></fa-icon>
+      </div>
+      <button nbButton ghost size="tiny" (click)="showFooter()">Exibir Rodapé<nb-icon icon="arrow-down"></nb-icon></button>
+    </div>
+  </div>
+</div>

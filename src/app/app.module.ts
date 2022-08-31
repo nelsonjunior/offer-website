@@ -16,13 +16,17 @@ import {
   NbSearchModule,
   NbFormFieldModule,
   NbInputModule,
+  NbAutocompleteModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TemplateComponent } from './pages/template/template.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NavegationBarComponent } from './pages/template/components/navegation-bar/navegation-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [AppComponent, TemplateComponent],
+  declarations: [AppComponent, TemplateComponent, NavegationBarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,6 +46,10 @@ import { RouterModule } from '@angular/router';
     NbSearchModule,
     NbInputModule,
     NbFormFieldModule,
+    NbAutocompleteModule,
+    NbSidebarModule.forRoot(),
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

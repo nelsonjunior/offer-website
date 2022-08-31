@@ -79,7 +79,8 @@
               "browserTarget": "offer:build:production"
             },
             "development": {
-              "browserTarget": "offer:build:development"
+              "browserTarget": "offer:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

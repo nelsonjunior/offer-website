@@ -1,0 +1,38 @@
+  <div class="nav-bar-content">
+    <img src="assets/logo.png" height="36px" />
+    <button
+      ghost
+      nbButton
+      size="medium"
+      [nbContextMenu]="categories"
+      nbContextMenuTag="category-context-menu"
+      nbContextMenuTrigger="hover">
+      <nb-icon icon="menu-2"></nb-icon>
+      Categorias
+    </button>
+    <input
+      type="text"
+      class="search-input"
+      nbInput
+      placeholder="Buscar Oferta"
+      fieldSize="large"
+      [value]="(searchTerm$ | async)?.term"
+      (click)="openSearch()"
+    />
+    <div class="nav-bar-actions">
+      <nb-search
+        type="rotate-layout"
+        hint="Enter para buscar oferta"
+        placeholder="Pesquisar..."
+      >
+      </nb-search>
+      <button nbButton status="primary">
+        <nb-icon icon="plus"></nb-icon>
+      </button>
+      <button nbButton status="default">
+        <nb-icon icon="bell"></nb-icon>
+      </button>
+      <button nbButton outline="" status="primary">Entrar</button>
+    </div>
+  </div>
+

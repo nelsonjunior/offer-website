@@ -1,0 +1,31 @@
+<div class="adverts-content-filter">
+  <div class="adverts-content-filter-categories">
+    <span class="subtitle padding-b10">Categorias:</span>
+    <nb-checkbox *ngFor="let c of categories | async" (checkedChange)="changeCategory(c, $event)">{{c.name}}</nb-checkbox>
+    <span class="padding-b10"></span>
+    <button nbButton outline status="info" size="tiny">Ver todas as opções</button>
+  </div>
+  <div class="adverts-content-filter-prices">
+    <span class="subtitle padding-b10">Preços:</span>
+    <div class="adverts-price-range">
+      <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Min" [(ngModel)]="filter.minPrice"
+        [nbTooltipDisabled]="!filter.minPrice" nbTooltip="{{filter.minPrice | currency:'BRL':'symbol':'1.2-2'}}"
+        [allowNegativeNumbers]="false" mask="separator.0" thousandSeparator=".">
+      <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Max" [(ngModel)]="filter.maxPrice"
+        [nbTooltipDisabled]="!filter.maxPrice" nbTooltip="{{filter.maxPrice | currency:'BRL':'symbol':'1.2-2'}}"
+        [allowNegativeNumbers]="false" mask="separator.0" thousandSeparator=".">
+      <button nbButton outline size="tiny" (click)="changePrices()"><nb-icon icon="chevron-right"></nb-icon></button>
+    </div>
+  </div>
+  <div class="adverts-content-filter-rate">
+    <span class="subtitle padding-b10">Avaliações:</span>
+    <bar-rating class="star-rating" [(rate)]="filter.rate" [max]="5" (rateChange)="changeRate()" >
+      <ng-template ratingActive>
+        <nb-icon icon="star" [options]="{ animation: { type: 'pulse' }, width: '24px' }"></nb-icon>
+      </ng-template>
+      <ng-template ratingInactive>
+        <nb-icon icon="star-outline" [options]="{ animation: { type: 'pulse' }, width: '24px' }"></nb-icon>
+      </ng-template>
+    </bar-rating>
+  </div>
+</div>

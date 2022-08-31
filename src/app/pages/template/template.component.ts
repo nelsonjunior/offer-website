@@ -1,59 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMenuItem, NbSearchService } from '@nebular/theme';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/shared/model/category.model';
+import { FooterService } from 'src/app/shared/services/footer.service';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss']
+  styleUrls: ['./template.component.scss'],
 })
-export class TemplateComponent implements OnInit, OnDestroy {
+export class TemplateComponent implements OnInit {
 
-  categorias: NbMenuItem[] = [
-    {
-      title: 'Eletrônicos'
-    },
-    {
-      title: 'Celulares'
-    },
-    {
-      title: 'Eletrodomésticos'
-    },
-    {
-      title: 'Games'
-    },
-    {
-      title: 'Móveis'
-    },
-    {
-      title: 'Informática'
-    },
-    {
-      title: 'Esporte'
-    }
-  ];
-
-  searchValue = '';
-
-  unsubSearch!: Subscription;
-
-  searchTerm$: Observable<any> = this.searchService.onSearchSubmit();
+  footerVisibility$: Observable<boolean> = this.footerService.visible$.asObservable();
 
   constructor(
-    private searchService: NbSearchService
-  ) { }
+    private footerService: FooterService
+  ) {}
 
   ngOnInit(): void {
-
   }
 
-  openSearch() {
-
-    this.searchService.activateSearch('rotate-layout');
+  onSelectCategory(category: Category): void {
+    console.log(category);
   }
 
-  ngOnDestroy(): void {
-    this.unsubSearch.unsubscribe();
+  hideFooter(): void {
+    this.footerService.hide();
   }
-
 }

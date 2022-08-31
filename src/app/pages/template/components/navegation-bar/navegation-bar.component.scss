@@ -1,0 +1,20 @@
+.nav-bar-content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-input {
+  width: 400px;
+}
+
+.nav-bar-actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 240px;
+}
+
+
