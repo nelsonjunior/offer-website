@@ -10,22 +10,34 @@
       <nb-icon icon="menu-2"></nb-icon>
       Categorias
     </button>
-    <input
-      type="text"
-      class="search-input"
-      nbInput
-      placeholder="Buscar Oferta"
-      fieldSize="large"
-      [value]="(searchTerm$ | async)?.term"
-      (click)="openSearch()"
-    />
+    <nb-form-field
+      class="search-input">
+      <input
+        type="text"
+        nbInput
+        placeholder="Buscar Oferta"
+        fieldSize="large"
+        (input)="search($event)"
+        [(ngModel)]="searchValue"
+        [nbAutocomplete]="auto"
+      />
+      <button nbSuffix nbButton ghost (click)="clearSearch()">
+        <nb-icon icon="close" pack="eva">
+        </nb-icon>
+      </button>
+    </nb-form-field>
+
+    <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+      <nb-option *ngFor="let offer of filteredOptions$ | async" [value]="offer.description">
+        {{ offer.description }}
+      </nb-option>
+
+    </nb-autocomplete>
     <div class="nav-bar-actions">
-      <nb-search
-        type="rotate-layout"
-        hint="Enter para buscar oferta"
-        placeholder="Pesquisar..."
-      >
-      </nb-search>
+      <button nbButton status="basic" (click)="getOffers()">
+        <nb-icon icon="search"></nb-icon>
+      </button>
       <button nbButton status="primary">
         <nb-icon icon="plus"></nb-icon>
       </button>

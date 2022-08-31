@@ -10,6 +10,11 @@ export interface Offer {
   store: OfferStore;
 }
 
+export interface OfferShort {
+  id: number;
+  description: string;
+}
+
 export interface OfferMetrics {
   views: number;
   likes: number;
@@ -27,10 +32,16 @@ export interface OfferResponse {
   page: number;
 }
 
+export interface OfferShortResponse {
+  message: string;
+  result: OfferShort[];
+}
+
 export interface OfferFilter {
   categories?: Category[];
   minPrice?: number;
   maxPrice?: number;
   rate?: number;
   orderBy?: number;
+  term?: string;
 }

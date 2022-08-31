@@ -1,15 +1,17 @@
 import {
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
-import { NbMenuItem, NbMenuService, NbSearchService } from '@nebular/theme';
-import { filter, map, Observable, Subscription } from 'rxjs';
+import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map, Observable, of, Subscription, tap } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
+import { OfferShort } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
+import { OfferService } from 'src/app/shared/services/offer.service';
+import { NavegationBarService } from './navegation-bar.service';
 
 @Component({
   selector: 'app-navegation-bar',
@@ -18,30 +20,27 @@ import { CategoryServiceService } from 'src/app/shared/services/category-service
 })
 export class NavegationBarComponent implements OnInit, OnDestroy {
 
+  @Output() selectCategory: EventEmitter<Category> = new EventEmitter<Category>();
+
   categories: NbMenuItem[] = [
     {
       title: 'Carregando...',
     },
   ];
 
-  searchValue = '';
+  searchValue: string = '';
 
   unsubSearch!: Subscription;
 
-  searchTerm$: Observable<any> = this.searchService.onSearchSubmit();
-
-  @Output() selectCategory: EventEmitter<Category> =
-    new EventEmitter<Category>();
-
-  @Output() searchTerm: EventEmitter<string> = new EventEmitter<string>();
+  filteredOptions$: Observable<OfferShort[]> = of([]);
 
   private readonly categoryTag = 'category-context-menu';
 
   constructor(
+    private offerService: OfferService,
     private categoryService: CategoryServiceService,
     private nbMenuService: NbMenuService,
-    private searchService: NbSearchService,
-    private cb: ChangeDetectorRef
+    private navegationBarService: NavegationBarService
   ) {}
 
   ngOnInit(): void {
@@ -62,8 +61,34 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     });
   }
 
-  openSearch() {
-    this.searchService.activateSearch('rotate-layout');
+  search(event:any) {
+    if (event.target.value.length < 3) {
+      this.filteredOptions$ = of([]);
+      if(!!this.navegationBarService.searchTerm$.value
+        && this.navegationBarService.searchTerm$.value !== event.target.value){
+        this.navegationBarService.setSearchTerm('');
+      }
+      return;
+    };
+
+    this.filteredOptions$ = this.offerService.search(event.target.value).pipe(
+      tap(_ => event.target.click()),
+      map(({result}) => result)
+    );
+  }
+
+  getOffers(): void {
+    this.navegationBarService.setSearchTerm(this.searchValue);
+  }
+
+  clearSearch(): void {
+    this.filteredOptions$ = of([]);
+    this.searchValue = '';
+    this.navegationBarService.setSearchTerm('');
+  }
+
+  onSelectionChange(term:string) {
+    this.navegationBarService.setSearchTerm(term);
   }
 
   ngOnDestroy(): void {

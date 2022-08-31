@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faFacebookF, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faShareNodes } from '@fortawesome/free-solid-svg-icons';
+import { NbLayoutScrollService } from '@nebular/theme';
 import { Offer, OfferFilter } from 'src/app/shared/model/offer.model';
 import { FooterService } from 'src/app/shared/services/footer.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import ArraysUtils from 'src/app/shared/utils/arrays.util';
+import { NavegationBarService } from '../template/components/navegation-bar/navegation-bar.service';
 
 @Component({
   selector: 'app-home',
@@ -36,8 +38,21 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private footerService: FooterService,
-    private offerService: OfferService
-  ) {}
+    private offerService: OfferService,
+    private navegationBarService: NavegationBarService,
+    private scrollService: NbLayoutScrollService,
+  ) {
+
+    this.navegationBarService.searchTerm$.subscribe(term => {
+
+      this.scrollService.scrollTo(0, 0);
+
+      this.filter = {...this.filter, term: term};
+
+      this.initLoad();
+
+    });
+  }
 
   ngOnInit(): void {
     this.initLoad();
@@ -84,9 +99,7 @@ export class HomeComponent implements OnInit {
         data.loading = false;
         data.pageToLoadNext++;
       });
-
   }
-
 }
 
 export interface OfferData {
