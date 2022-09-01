@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Offer, OfferFilter, OfferResponse, OfferShort, OfferShortResponse } from '../model/offer.model';
+import { Offer, OfferDetail, OfferFilter, OfferResponse, OfferShort, OfferShortResponse } from '../model/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +44,14 @@ export class OfferService {
           message: 'Search offers',
           result: offers,
         };
+      })
+    );
+  }
+
+  getBySlug(slug: string): Observable<OfferDetail> {
+    return this.http.get<OfferDetail[]>(`${environment.api}/offers?slug=${slug}`).pipe(
+      map((offers) => {
+        return offers[0];
       })
     );
   }

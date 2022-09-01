@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faFacebookF, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faShareNodes } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 import { NbLayoutScrollService } from '@nebular/theme';
 import { Offer, OfferFilter } from 'src/app/shared/model/offer.model';
-import { FooterService } from 'src/app/shared/services/footer.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import ArraysUtils from 'src/app/shared/utils/arrays.util';
 import { NavegationBarService } from '../template/components/navegation-bar/navegation-bar.service';
@@ -14,13 +12,6 @@ import { NavegationBarService } from '../template/components/navegation-bar/nave
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
-  facebook = faFacebookF;
-  instagram = faInstagram;
-  twitter = faTwitter;
-  linkedin = faLinkedin;
-  mail = faEnvelope;
-  shared = faShareNodes;
 
   lastIndexOffer = 0;
 
@@ -37,10 +28,10 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
-    private footerService: FooterService,
     private offerService: OfferService,
     private navegationBarService: NavegationBarService,
     private scrollService: NbLayoutScrollService,
+    private router: Router
   ) {
 
     this.navegationBarService.searchTerm$.subscribe(term => {
@@ -83,10 +74,6 @@ export class HomeComponent implements OnInit {
     this.initLoad();
   }
 
-  showFooter(): void {
-    this.footerService.show();
-  }
-
   loadNext(data: OfferData): void {
 
     if (data.loading) { return }
@@ -100,6 +87,11 @@ export class HomeComponent implements OnInit {
         data.pageToLoadNext++;
       });
   }
+
+  openDetail(offer: Offer): void {
+    this.router.navigate(['/offer', offer.slug]);
+  }
+
 }
 
 export interface OfferData {

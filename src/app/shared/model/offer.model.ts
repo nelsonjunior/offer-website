@@ -1,8 +1,12 @@
 import { Category } from "./category.model";
 
-export interface Offer {
+export interface OfferShort {
   id: number;
   description: string;
+}
+
+export interface Offer extends OfferShort {
+  slug: string;
   price: number;
   image: string;
   tag?: string;
@@ -10,9 +14,29 @@ export interface Offer {
   store: OfferStore;
 }
 
-export interface OfferShort {
+export interface OfferDetail extends Offer {
+  lastPrice: number;
+  category: Category;
+  additionalInformation: string;
+  location: OfferLocation;
+  comments: OfferComment[];
+}
+
+export interface OfferLocation {
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface OfferComment {
   id: number;
-  description: string;
+  comment: string;
+  user: string;
+  image: string;
+  createdAt: Date;
 }
 
 export interface OfferMetrics {

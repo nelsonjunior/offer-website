@@ -1,0 +1,26 @@
+<nb-card class="card-offer-detail-content">
+  <nb-card-body class="card-offer-detail-body">
+    <div class="card-offer-detail-left">
+      <img src="{{offer.image}}"/>
+    </div>
+    <div class="card-offer-detail-right">
+      <div class="card-offer-detail-header">
+        <h6>{{offer.description}}</h6>
+      </div>
+      <div class="card-offer-detail-tag">
+        <button *ngIf="!!offer.tag" nbButton outline status="warning" size="tiny">{{offer.tag}}</button>
+      </div>
+      <span class="subtitle last-price-decoration">{{offer.lastPrice | currency:'BRL':'symbol':'1.2-2'}}</span>
+      <div class="card-offer-detail-footer">
+        <h1>{{offer.price | currency:'BRL':'symbol':'1.2-2'}}</h1>
+        <div class="card-offer-detail-footer-metrics">
+          <fa-icon size="sm" [icon]="fireIcon"></fa-icon>
+          <span class="subtitle-2">{{offer.metrics.likes}}</span>
+          <fa-icon size="sm" [icon]="commentsIcon"></fa-icon>
+          <span class="subtitle-2">{{offer.metrics.comments}}</span>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+

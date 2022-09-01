@@ -1,0 +1,37 @@
+<div class="detail-offer-content">
+  <div class="detail-offer-breadcrumb">
+    <span class="subtitle-2">Ofertas</span>
+    <nb-icon icon="chevron-right"></nb-icon>
+    <span class="subtitle-2">Celulares</span>
+    <nb-icon icon="chevron-right"></nb-icon>
+    <span class="subtitle-2">{{offer.description}}</span>
+  </div>
+  <div class="detail-offer-wrapper">
+    <div class="detail-offer-wrapper-left">
+      <app-card-offer-detail [offer]="offer"></app-card-offer-detail>
+      <div class="additional-information">
+        <span class="subtitle-2">Informações Adicionais</span>
+        <span class="caption">
+          {{offer.additionalInformation}}
+        </span>
+      </div>
+      <div class="detail-offer-complements">
+        <div class="detail-offer-map">
+          <span class="subtitle-2">Mapa</span>
+        </div>
+        <div class="detail-offer-comments">
+          <span class="subtitle-2">Comentários</span>
+        </div>
+      </div>
+    </div>
+    <div class="detail-offer-wrapper-right">
+      <div class="store-info">
+        <span class="subtitle-2">Informações sobre a Loja</span>
+      </div>
+      <div class="offers-suggestions">
+        <span class="subtitle-2">Ofertas relacionadas</span>
+      </div>
+      <app-social-media></app-social-media>
+    </div>
+  </div>
+</div>

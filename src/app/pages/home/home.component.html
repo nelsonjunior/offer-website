@@ -10,7 +10,10 @@
       <nb-list>
         <nb-list-item *ngFor="let offerChunk of offerData.offers" style="padding: 0px;">
           <div class="offers-itens-row">
-            <app-card-offer *ngFor="let offer of offerChunk" [offer]="offer"></app-card-offer>
+            <app-card-offer *ngFor="let offer of offerChunk" [offer]="offer"
+              (clickCard)="openDetail($event)">
+
+            </app-card-offer>
           </div>
         </nb-list-item>
         <nb-list-item *ngIf="offerData.loading" [nbSpinner]="true" nbSpinnerSize="small" nbSpinnerStatus="info">
@@ -26,16 +29,6 @@
     <div class="adverts-publish">
       <span class="subtitle-2">Publicidade</span>
     </div>
-    <div class="adverts-social">
-      <span class="subtitle-2">Siga nas redes sociais</span>
-      <div class="adverts-social-icons">
-        <fa-icon size="2x" [icon]="facebook"></fa-icon>
-        <fa-icon size="2x" [icon]="instagram"></fa-icon>
-        <fa-icon size="2x" [icon]="twitter"></fa-icon>
-        <fa-icon size="2x" [icon]="mail"></fa-icon>
-        <fa-icon size="2x" [icon]="shared"></fa-icon>
-      </div>
-      <button nbButton ghost size="tiny" (click)="showFooter()">Exibir Rodapé<nb-icon icon="arrow-down"></nb-icon></button>
-    </div>
+    <app-social-media></app-social-media>
   </div>
 </div>

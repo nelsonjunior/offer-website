@@ -1,4 +1,4 @@
-<div class="card-offer-content">
+<div class="card-offer-content" (click)="onClickCard()">
   <nb-card>
     <nb-card-header class="card-offer-header">
       <div class="card-offer-header-wrapper">
@@ -15,7 +15,7 @@
     </nb-card-header>
     <nb-card-body class="card-offer-body">
       <div>
-        <span class="subtitle-2">{{offer.description}}</span>
+        <span class="subtitle-2">{{offer.description | truncate:[45]}}</span>
       </div>
     </nb-card-body>
     <nb-card-footer class="card-offer-footer">
