@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbMenuItem, NbMenuService } from '@nebular/theme';
+import { NbLayoutScrollService, NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map, Observable, of, Subscription, tap } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
 import { OfferShort } from 'src/app/shared/model/offer.model';
@@ -40,7 +40,8 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     private router: Router,
     private offerService: OfferService,
     private categoryService: CategoryServiceService,
-    private nbMenuService: NbMenuService
+    private nbMenuService: NbMenuService,
+    private nbScrollService: NbLayoutScrollService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,11 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
 
       this.categories = categories;
     });
+  }
+
+  goToHome(): void {
+    this.nbScrollService.scrollTo(0, 0);
+    this.clearSearch();
   }
 
   searchSuggestions(event:any) {

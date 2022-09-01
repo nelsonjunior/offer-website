@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbLayoutScrollService } from '@nebular/theme';
 import { Offer, OfferFilter } from 'src/app/shared/model/offer.model';
@@ -10,7 +10,7 @@ import ArraysUtils from 'src/app/shared/utils/arrays.util';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   lastIndexOffer = 0;
 
@@ -43,10 +43,6 @@ export class HomeComponent implements OnInit {
 
         this.initLoad();
     });
-  }
-
-  ngOnInit(): void {
-    // this.initLoad();
   }
 
   initLoad(): void {
