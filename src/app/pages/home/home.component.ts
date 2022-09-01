@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NbLayoutScrollService } from '@nebular/theme';
 import { Offer, OfferFilter } from 'src/app/shared/model/offer.model';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import ArraysUtils from 'src/app/shared/utils/arrays.util';
-import { NavegationBarService } from '../template/components/navegation-bar/navegation-bar.service';
 
 @Component({
   selector: 'app-home',
@@ -28,25 +27,26 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private offerService: OfferService,
-    private navegationBarService: NavegationBarService,
     private scrollService: NbLayoutScrollService,
     private router: Router
   ) {
 
-    this.navegationBarService.searchTerm$.subscribe(term => {
+    this.activatedRoute.queryParams.subscribe(params => {
 
-      this.scrollService.scrollTo(0, 0);
+        const term = params['q'];
 
-      this.filter = {...this.filter, term: term};
+        this.scrollService.scrollTo(0, 0);
 
-      this.initLoad();
+        this.filter = {...this.filter, term: term};
 
+        this.initLoad();
     });
   }
 
   ngOnInit(): void {
-    this.initLoad();
+    // this.initLoad();
   }
 
   initLoad(): void {

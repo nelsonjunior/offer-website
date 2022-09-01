@@ -17,11 +17,12 @@
         nbInput
         placeholder="Buscar Oferta"
         fieldSize="large"
-        (input)="search($event)"
+        (input)="searchSuggestions($event)"
         [(ngModel)]="searchValue"
         [nbAutocomplete]="auto"
+        (keyup.enter)="searchOffers()"
       />
-      <button nbSuffix nbButton ghost (click)="clearSearch()">
+      <button *ngIf="!!searchValue" nbSuffix nbButton ghost (click)="clearSearch()">
         <nb-icon icon="close" pack="eva">
         </nb-icon>
       </button>
@@ -35,7 +36,7 @@
 
     </nb-autocomplete>
     <div class="nav-bar-actions">
-      <button nbButton status="basic" (click)="getOffers()">
+      <button nbButton status="basic" (click)="searchOffers()">
         <nb-icon icon="search"></nb-icon>
       </button>
       <button nbButton status="primary">

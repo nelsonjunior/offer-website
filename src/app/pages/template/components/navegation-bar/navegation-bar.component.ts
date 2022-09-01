@@ -5,13 +5,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { filter, map, Observable, of, Subscription, tap } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
 import { OfferShort } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
-import { NavegationBarService } from './navegation-bar.service';
 
 @Component({
   selector: 'app-navegation-bar',
@@ -37,10 +37,10 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
   private readonly categoryTag = 'category-context-menu';
 
   constructor(
+    private router: Router,
     private offerService: OfferService,
     private categoryService: CategoryServiceService,
-    private nbMenuService: NbMenuService,
-    private navegationBarService: NavegationBarService
+    private nbMenuService: NbMenuService
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => this.selectCategory.emit(data));
 
-    this.categoryService.categories$.subscribe(result => {
+    this.unsubSearch = this.categoryService.categories$.subscribe(result => {
       const categories = result.map((category) => {
         return { title: category.name, data: category };
       });
@@ -61,12 +61,12 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     });
   }
 
-  search(event:any) {
+  searchSuggestions(event:any) {
     if (event.target.value.length < 3) {
       this.filteredOptions$ = of([]);
-      if(!!this.navegationBarService.searchTerm$.value
-        && this.navegationBarService.searchTerm$.value !== event.target.value){
-        this.navegationBarService.setSearchTerm('');
+      if(!!this.searchValue
+        && this.searchValue !== event.target.value){
+        this.router.navigate(['/']);
       }
       return;
     };
@@ -77,18 +77,24 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     );
   }
 
-  getOffers(): void {
-    this.navegationBarService.setSearchTerm(this.searchValue);
+  searchOffers(): void {
+    if(!!this.searchValue) {
+      this.router.navigate(['/'], { queryParams: { q: this.searchValue } });
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   clearSearch(): void {
     this.filteredOptions$ = of([]);
     this.searchValue = '';
-    this.navegationBarService.setSearchTerm('');
+    this.router.navigate(['/']);
   }
 
   onSelectionChange(term:string) {
-    this.navegationBarService.setSearchTerm(term);
+    if(!!term) {
+      this.router.navigate(['/'], { queryParams: { q: term } });
+    }
   }
 
   ngOnDestroy(): void {

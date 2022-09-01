@@ -18,8 +18,6 @@ export class DetailOfferComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('offer', this.offer);
-
   }
 
 }
