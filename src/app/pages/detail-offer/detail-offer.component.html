@@ -10,26 +10,36 @@
     <div class="detail-offer-wrapper-left">
       <app-card-offer-detail [offer]="offer"></app-card-offer-detail>
       <div class="additional-information">
-        <span class="subtitle-2">Informações Adicionais</span>
-        <span class="caption">
+        <div class="additional-information-header">
+          <span class="subtitle">Informações Adicionais</span>
+        </div>
+        <p>
           {{offer.additionalInformation}}
-        </span>
+        </p>
       </div>
       <div class="detail-offer-complements">
         <div class="detail-offer-map">
-          <span class="subtitle-2">Mapa</span>
+          <div class="detail-offer-map-header">
+            <span class="subtitle">Mapa</span>
+          </div>
         </div>
         <div class="detail-offer-comments">
-          <span class="subtitle-2">Comentários</span>
+          <div class="detail-offer-comments-header">
+            <span class="subtitle">Comentários</span>
+          </div>
         </div>
       </div>
     </div>
     <div class="detail-offer-wrapper-right">
       <div class="store-info">
-        <span class="subtitle-2">Informações sobre a Loja</span>
+        <div class="store-info-header">
+          <span class="subtitle">Informações sobre a Loja</span>
+        </div>
       </div>
       <div class="offers-suggestions">
-        <span class="subtitle-2">Ofertas relacionadas</span>
+        <div class="offers-suggestions-header">
+          <span class="subtitle">Ofertas relacionadas</span>
+        </div>
       </div>
       <app-social-media></app-social-media>
     </div>

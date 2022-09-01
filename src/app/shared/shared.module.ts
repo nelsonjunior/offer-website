@@ -23,7 +23,7 @@ import { SocialMediaComponent } from './components/social-media/social-media.com
     NbIconModule,
     FontAwesomeModule,
     TruncatePipe,
-    SocialMediaComponent
+    SocialMediaComponent,
   ],
 })
 export class SharedModule { }
