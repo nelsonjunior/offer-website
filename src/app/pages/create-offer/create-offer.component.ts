@@ -1,9 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { BehaviorSubject, combineLatest, combineLatestWith, filter, map, Observable, of, tap, zip } from 'rxjs';
+import { BehaviorSubject, combineLatestWith, map, Observable, of } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
+import { CreateOffer } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
+import { OfferService } from 'src/app/shared/services/offer.service';
 import FormsUtils from 'src/app/shared/utils/forms.util';
 
 @Component({
@@ -40,6 +43,8 @@ export class CreateOfferComponent implements OnInit {
   constructor(
     private categoryService: CategoryServiceService,
     private toastrService: NbToastrService,
+    private offerService: OfferService,
+    private router: Router,
     private fb: FormBuilder
   ) {
     this.formCreateOffer = this.fb.group({
@@ -85,7 +90,6 @@ export class CreateOfferComponent implements OnInit {
   }
 
   onSelect(event: any) {
-		console.log(event);
 
     if(event.rejectedFiles.length > 0) {
       this.toastrService.danger('Tamanho máximo de arquivo é 2MB', 'Arquivo muito grande');
@@ -97,7 +101,6 @@ export class CreateOfferComponent implements OnInit {
 	}
 
 	onRemove(event: any) {
-		console.log(event);
 		this.files.splice(this.files.indexOf(event), 1);
     this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
     this.validateUpload();
@@ -113,7 +116,28 @@ export class CreateOfferComponent implements OnInit {
     FormsUtils.markAllControlsAsDirty(Object.values(this.formCreateOffer.controls));
 
     if(this.formCreateOffer.valid && this.files.length > 0) {
-      this.toastrService.success('Oferta publicada com sucesso', 'Sucesso');
+
+      const {start, end} = this.formCreateOffer.controls?.['dateRange'].value;
+
+      const offer: CreateOffer = {
+        description: this.formCreateOffer.controls?.['description'].value,
+        category: this.formCreateOffer.controls?.['category'].value,
+        additionalInformation: this.formCreateOffer.controls?.['additionalInformation'].value,
+        price: this.formCreateOffer.controls?.['price'].value,
+        lastPrice: this.formCreateOffer.controls?.['lastPrice'].value,
+        datePublish: start,
+        dateExpire: end,
+        storeID: this.storeID,
+        photos: this.files
+      };
+
+      this.offerService.publish(offer).subscribe(
+        (offer) => {
+          this.toastrService.success(`Oferta ${offer.description} publicada com sucesso`, 'Sucesso');
+          this.router.navigate(['/my-offers']);
+        }
+      )
+
     } else {
       this.toastrService.danger('Preencha todos os campos', 'Erro');
     }

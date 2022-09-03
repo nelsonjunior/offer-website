@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'create-offer',
         loadChildren: () =>
           import('./pages/create-offer/create-offer.module').then(m => m.CreateOfferModule)
+      },
+      {
+        path: 'my-offers',
+        loadChildren: () => import('./pages/my-offers/my-offers.module').then(m => m.MyOffersModule)
       }
     ],
   }

@@ -14,6 +14,18 @@ export interface Offer extends OfferShort {
   store: OfferStore;
 }
 
+export interface CreateOffer {
+  description: string;
+  category: Category;
+  additionalInformation: string;
+  datePublish: Date;
+  dateExpire: Date;
+  price: number;
+  lastPrice: number;
+  storeID: string;
+  photos: File[];
+}
+
 export interface OfferDetail extends Offer {
   lastPrice: number;
   category: Category;
