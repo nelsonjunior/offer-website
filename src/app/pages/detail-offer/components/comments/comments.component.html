@@ -1,0 +1,14 @@
+<div class="comments">
+  <div class="comments-header">
+    <span class="subtitle">Comentários</span>
+  </div>
+  <nb-list>
+    <nb-list-item class="comments-item" *ngFor="let c of (comments$ | async)">
+        <img class="skeleton" [src]="c.image" width="60" height="60" />
+        <div class="comments-item-info">
+          <span class="caption">{{c.user}} em {{c.createdAt | date:'dd/MM/yyyy'}}</span>
+          <span class="subtitle-2">{{c.comment| truncate:[40]}}</span>
+        </div>
+    </nb-list-item>
+  </nb-list>
+</div>

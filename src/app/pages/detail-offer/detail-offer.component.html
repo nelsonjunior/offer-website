@@ -22,25 +22,22 @@
           <div class="detail-offer-map-header">
             <span class="subtitle">Mapa</span>
           </div>
+          <iframe
+            width="100%"
+            height="100%"
+            style="border:0"
+            loading="lazy"
+            [src]="getMapURL() | sanitizer:'resourceUrl'">
+          </iframe>
         </div>
         <div class="detail-offer-comments">
-          <div class="detail-offer-comments-header">
-            <span class="subtitle">Comentários</span>
-          </div>
+          <app-comments [offerID]="offer.id"></app-comments>
         </div>
       </div>
     </div>
     <div class="detail-offer-wrapper-right">
-      <div class="store-info">
-        <div class="store-info-header">
-          <span class="subtitle">Informações sobre a Loja</span>
-        </div>
-      </div>
-      <div class="offers-suggestions">
-        <div class="offers-suggestions-header">
-          <span class="subtitle">Ofertas relacionadas</span>
-        </div>
-      </div>
+      <app-store-info [store]="offer.store" ></app-store-info>
+      <app-recommendations [offerID]="offer.id"></app-recommendations>
       <app-social-media></app-social-media>
     </div>
   </div>

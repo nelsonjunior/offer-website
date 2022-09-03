@@ -1,0 +1,15 @@
+<div class="offers-recommendations">
+  <div class="offers-recommendations-header">
+    <span class="subtitle">Ofertas relacionadas</span>
+  </div>
+  <nb-list>
+    <nb-list-item class="recommendation-item" *ngFor="let r of (recommendation$ | async)">
+        <img class="skeleton" [src]="r.image" width="60" height="60" />
+        <div class="recommendation-item-info">
+          <span class="subtitle-2">{{r.description | truncate:[40]}}</span>
+          <span class="h6">{{r.price | currency:'BRL':'symbol':'1.2-2'}}</span>
+        </div>
+    </nb-list-item>
+  </nb-list>
+  <button nbButton ghost size="tiny">Mais ofertas recomendadas</button>
+</div>

@@ -1,0 +1,16 @@
+<div class="store-info">
+  <div class="store-info-header">
+    <span class="subtitle">Informações sobre a Loja</span>
+  </div>
+  <div class="store-info-wrapper">
+    <img class="skeleton" alt="" src="{{(storeDetail$ | async)?.image}}" width="60px" height="60px" />
+    <div class="store-info-detail">
+      <div class="store-info-detail-header">
+        <span class="subtitle">{{store.name}}</span>
+        <nb-icon icon="checkmark-circle-outline" status="success"></nb-icon>
+      </div>
+      <p>{{(storeDetail$ | async)?.description}}</p>
+      <button nbButton ghost size="tiny">Mais ofertas da loja</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+{
+  "/offers/:slug/recommendations": "/recommendations",
+  "/offers/:slug/comments": "/comments"
+}

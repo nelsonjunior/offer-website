@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:4200/api/v1'
+  api: 'http://localhost:4200/api/v1',
+  mapKey: 'API_KEY'
 };
 
 /*

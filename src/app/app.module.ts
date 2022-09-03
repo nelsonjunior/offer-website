@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavegationBarComponent } from './pages/template/components/navegation-bar/navegation-bar.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
 
 @NgModule({
   declarations: [AppComponent, TemplateComponent, NavegationBarComponent],
@@ -45,7 +46,10 @@ import { SharedModule } from './shared/shared.module';
     NbAutocompleteModule,
     NbSidebarModule.forRoot(),
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    NgxUiLoaderModule, // import NgxUiLoaderModule
+    NgxUiLoaderHttpModule,
+    NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
   ],
   providers: [],
   bootstrap: [AppComponent],

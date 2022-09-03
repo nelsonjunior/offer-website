@@ -19,7 +19,6 @@ export interface OfferDetail extends Offer {
   category: Category;
   additionalInformation: string;
   location: OfferLocation;
-  comments: OfferComment[];
 }
 
 export interface OfferLocation {
@@ -31,14 +30,6 @@ export interface OfferLocation {
   longitude: number;
 }
 
-export interface OfferComment {
-  id: number;
-  comment: string;
-  user: string;
-  image: string;
-  createdAt: Date;
-}
-
 export interface OfferMetrics {
   views: number;
   likes: number;
@@ -46,7 +37,7 @@ export interface OfferMetrics {
 }
 
 export interface OfferStore {
-  id: number;
+  id: string;
   name: string;
 }
 

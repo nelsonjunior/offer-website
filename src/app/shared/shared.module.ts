@@ -5,17 +5,17 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbIconModule } from '@nebular/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocialMediaComponent } from './components/social-media/social-media.component';
-
+import { SanitizerPipe } from './pipes/sanitizer.pipe';
 
 
 @NgModule({
-  declarations: [TruncatePipe, SocialMediaComponent],
+  declarations: [TruncatePipe, SocialMediaComponent, SanitizerPipe],
   imports: [
     CommonModule,
     NbButtonModule,
     NbEvaIconsModule,
     NbIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   exports: [
     NbButtonModule,
@@ -23,7 +23,8 @@ import { SocialMediaComponent } from './components/social-media/social-media.com
     NbIconModule,
     FontAwesomeModule,
     TruncatePipe,
-    SocialMediaComponent,
+    SanitizerPipe,
+    SocialMediaComponent
   ],
 })
 export class SharedModule { }

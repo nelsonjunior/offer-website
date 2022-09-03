@@ -8,6 +8,7 @@ import { Offer, OfferDetail, OfferFilter, OfferResponse, OfferShort, OfferShortR
   providedIn: 'root',
 })
 export class OfferService {
+
   constructor(private http: HttpClient) {}
 
   list(
