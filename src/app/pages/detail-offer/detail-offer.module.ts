@@ -8,6 +8,7 @@ import { CardOfferDetailComponent } from './components/card-offer-detail/card-of
 import { NbCardModule, NbListModule } from '@nebular/theme';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { ContentOfferComponent } from './components/content-offer/content-offer.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CommentsComponent } from './components/comments/comments.component';
     DetailOfferComponent,
     CardOfferDetailComponent,
     RecommendationsComponent,
-    CommentsComponent
+    CommentsComponent,
+    ContentOfferComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,9 @@ import { CommentsComponent } from './components/comments/comments.component';
     NbCardModule,
     NbListModule,
     SharedModule
+  ],
+  exports: [
+    ContentOfferComponent
   ]
 })
 export class DetailOfferModule { }

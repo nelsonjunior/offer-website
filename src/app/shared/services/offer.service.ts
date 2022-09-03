@@ -56,6 +56,9 @@ export class OfferService {
     });
   }
 
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${environment.api}/offers/${id}`);
+  }
 
   getBySlug(slug: string): Observable<OfferDetail> {
     return this.http.get<OfferDetail[]>(`${environment.api}/offers?slug=${slug}`).pipe(

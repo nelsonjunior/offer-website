@@ -8,32 +8,7 @@
   </div>
   <div class="detail-offer-wrapper">
     <div class="detail-offer-wrapper-left">
-      <app-card-offer-detail [offer]="offer"></app-card-offer-detail>
-      <div class="additional-information">
-        <div class="additional-information-header">
-          <span class="subtitle">Informações Adicionais</span>
-        </div>
-        <p>
-          {{offer.additionalInformation}}
-        </p>
-      </div>
-      <div class="detail-offer-complements">
-        <div class="detail-offer-map">
-          <div class="detail-offer-map-header">
-            <span class="subtitle">Mapa</span>
-          </div>
-          <iframe
-            width="100%"
-            height="100%"
-            style="border:0"
-            loading="lazy"
-            [src]="getMapURL() | sanitizer:'resourceUrl'">
-          </iframe>
-        </div>
-        <div class="detail-offer-comments">
-          <app-comments [offerID]="offer.id"></app-comments>
-        </div>
-      </div>
+      <app-content-offer [offer]="offer"></app-content-offer>
     </div>
     <div class="detail-offer-wrapper-right">
       <app-store-info [storeID]="offer.store.id" ></app-store-info>

@@ -8,9 +8,54 @@
     <div class="my-offers-wrapper-left">
       <nb-card>
         <nb-card-header>
-            <h6>Minhas Oferta</h6>
+            <div class="my-offers-header">
+              <h6>Minhas Oferta</h6>
+              <div class="my-offers-header-search">
+                <nb-form-field>
+                  <input
+                    type="text"
+                    nbInput
+                    placeholder="Buscar Oferta"
+                    fieldSize="small"
+                    [(ngModel)]="searchValue"
+                    (keyup.enter)="searchOffers()"
+                  />
+                  <button *ngIf="!!searchValue" nbSuffix nbButton ghost (click)="clearSearch()">
+                    <nb-icon icon="close" pack="eva">
+                    </nb-icon>
+                  </button>
+                </nb-form-field>
+                <button nbButton status="basic" (click)="searchOffers()" size="small">
+                  <nb-icon icon="search"></nb-icon>
+                </button>
+              </div>
+            </div>
+
         </nb-card-header>
         <nb-card-body>
+          <ngx-table [data]="offers$ | async" [configuration]="configuration" [columns]="columns">
+            <ng-template let-row>
+              <td>
+                <div class="font-small">{{ row.description | truncate:['50']}}</div>
+              </td>
+              <td>
+                <span class="font-small">Publicado</span>
+              </td>
+              <td>
+                <div class="actions-column">
+                  <button nbButton outline status="danger" size="tiny" (click)="onDelete(row)">
+                    <nb-icon icon="trash-2-outline"></nb-icon>
+                  </button>
+                  <button nbButton outline status="basic" size="tiny" (click)="onDetail(row)">
+                    <nb-icon icon="eye-outline"></nb-icon>
+                  </button>
+                  <button nbButton outline status="info" size="tiny" (click)="onEdit(row)">
+                    <nb-icon icon="edit-outline"></nb-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-template>
+          </ngx-table>
 
         </nb-card-body>
       </nb-card>
@@ -21,3 +66,16 @@
     </div>
   </div>
 </div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="dialog-content">
+    <nb-card-header>Confirmar Exclusão</nb-card-header>
+    <nb-card-body>Deseja confirmar exclusão da oferta {{data.description}}</nb-card-body>
+    <nb-card-footer class="dialog-actions">
+      <button nbButton outline status="danger" size="small"
+        (click)="ref.close()">Cancelar</button>
+      <button nbButton status="primary" size="small"
+        (click)="ref.close(data)">Excluír</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

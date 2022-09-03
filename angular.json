@@ -35,6 +35,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/ngx-easy-table/style.css",
               "node_modules/@nebular/theme/styles/prebuilt/default.css"
             ],
             "scripts": []
@@ -105,6 +106,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/ngx-easy-table/style.css",
               "node_modules/@nebular/theme/styles/prebuilt/default.css"
             ],
             "scripts": []

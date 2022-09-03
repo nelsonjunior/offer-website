@@ -1,0 +1,62 @@
+@use '../../../../../themes.scss' as *;
+
+.detail-offer-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.additional-information {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background: nb-theme(background-basic-color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.additional-information-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.detail-offer-complements {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.detail-offer-map {
+  width: 60%;
+  height: 290px;
+  padding: 10px;
+  background: nb-theme(background-basic-color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-offer-map-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.detail-offer-comments {
+  width: 40%;
+  height: 290px;
+}
+
