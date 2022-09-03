@@ -4,8 +4,12 @@ import { CommonModule } from '@angular/common';
 import { CreateOfferRoutingModule } from './create-offer-routing.module';
 import { CreateOfferComponent } from './create-offer.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NbButton, NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbSelectModule } from '@nebular/theme';
-import { FormsModule } from '@angular/forms';
+import { NbAlertModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
+import { ptBR } from 'date-fns/locale';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -16,11 +20,25 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     CreateOfferRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NbCardModule,
     NbButtonModule,
     NbInputModule,
     NbSelectModule,
-    NbDatepickerModule,
+    NbAlertModule,
+    NbFormFieldModule,
+    NbDatepickerModule.forRoot(),
+    NbDateFnsDateModule.forRoot(
+      {
+        format: 'dd/MM/yyyy',
+        parseOptions: { locale: ptBR },
+        formatOptions: { locale: ptBR }
+      }),
+    NgxMaskModule.forRoot({
+      validation: true,
+      thousandSeparator: '.',
+    }),
+    NgxDropzoneModule,
     SharedModule
   ]
 })

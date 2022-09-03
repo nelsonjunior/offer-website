@@ -7,40 +7,122 @@
   <div class="create-offer-wrapper">
     <div class="create-offer-wrapper-left">
       <nb-card>
-        <nb-card-header class="create-offer-header">
-            <h4>Criar Oferta</h4>
-            <button nbButton status="primary" size="medium">Publicar</button>
+        <nb-card-header>
+            <h6>Criar Oferta</h6>
         </nb-card-header>
         <nb-card-body>
-          <form>
+          <form [formGroup]="formCreateOffer">
             <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Titulo da Oferta</label>
-              <input type="text" nbInput fullWidth placeholder="Digite o titulo da oferta">
+              <label for="inputOfferTittle" class="label">Titulo da Oferta</label>
+              <input id="inputOfferTittle" formControlName="description"
+                [status]="getStatusInput(formCreateOffer.get('description'))"
+                type="text" nbInput fullWidth placeholder="Digite o titulo da oferta"/>
+              <p *ngIf="showErrosInput(formCreateOffer.get('description'))" class="caption-2 text-danger">
+                {{getErroMessage(formCreateOffer.get('description'))}}
+              </p>
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1" class="label">Categoria</label>
-              <input type="text" nbInput fullWidth placeholder="Digite o titulo da oferta">
+
+            <div class="row">
+              <div class="form-group">
+                <label for="inputCategory" class="label">Categoria</label>
+                <nb-select id="inputCategory" formControlName="category"
+                  [status]="getStatusInput(formCreateOffer.get('category'))"
+                  size="medium" fullWidth placeholder="Selecionar Categoria">
+                  <nb-option [value]="null">&nbsp;</nb-option>
+                  <nb-option *ngFor="let category of (categories$ | async)" [value]="category.id">{{category.name}}</nb-option>
+                </nb-select>
+                <p *ngIf="showErrosInput(formCreateOffer.get('category'))" class="caption-2 text-danger">
+                  {{getErroMessage(formCreateOffer.get('category'))}}
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfferDateRange" class="label">Período</label>
+                <nb-form-field class="input-range">
+                  <input id="inputOfferDateRange" formControlName="dateRange" readonly
+                    [status]="getStatusInput(formCreateOffer.get('dateRange'))"
+                    nbInput fullWidth placeholder="Selecionar período da oferta" [nbDatepicker]="dateTimePicker">
+                  <button
+                    nbSuffix nbButton ghost (click)="onCleanRangeDate()">
+                    <nb-icon icon="close" pack="eva"></nb-icon>
+                  </button>
+                  </nb-form-field>
+                <nb-rangepicker #dateTimePicker ></nb-rangepicker>
+                <p *ngIf="showErrosInput(formCreateOffer.get('dateRange'))" class="caption-2 text-danger">
+                  {{getErroMessage(formCreateOffer.get('dateRange'))}}
+                </p>
+              </div>
             </div>
             <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="inputFirstName" class="label">First Name</label>
-                  <input type="text" nbInput fullWidth id="inputFirstName" placeholder="First Name">
-                </div>
+              <div class="form-group">
+                <label for="inputPrice" class="label">Valor do Produto</label>
+                <input type="text" formControlName="price"
+                  nbInput fullWidth id="inputPrice"
+                  [status]="getStatusInput(formCreateOffer.get('price'))"
+                  currencyMask
+                  placeholder="Valor do produto"/>
+                <p *ngIf="showErrosInput(formCreateOffer.get('price'))" class="caption-2 text-danger">
+                  {{getErroMessage(formCreateOffer.get('price'))}}
+                </p>
               </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="inputLastName" class="label">Last Name</label>
-                  <input type="text" nbInput fullWidth id="inputLastName" placeholder="Last Name">
-                </div>
+              <div class="form-group">
+                <label for="inputPriceSale" class="label">Valor do Produto com desconto</label>
+                <input type="text" formControlName="lastPrice"
+                  nbInput fullWidth id="inputPriceSale"
+                  [status]="getStatusInput(formCreateOffer.get('lastPrice'))"
+                  currencyMask
+                  placeholder="Valor do produto com desconto"/>
+                <p *ngIf="showErrosInput(formCreateOffer.get('lastPrice'))" class="caption-2 text-danger">
+                  {{getErroMessage(formCreateOffer.get('lastPrice'))}}
+                </p>
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputAdditionalInfo" class="label">Informações Adicioais</label>
+              <textarea id="inputAdditionalInfo" formControlName="additionalInformation"
+                [status]="getStatusInput(formCreateOffer.get('additionalInformation'))"
+                type="text" nbInput fullWidth placeholder="Texto descrevendo informações do produto">
+              </textarea>
+              <p *ngIf="showErrosInput(formCreateOffer.get('additionalInformation'))" class="caption-2 text-danger">
+                {{getErroMessage(formCreateOffer.get('additionalInformation'))}}
+              </p>
+            </div>
+            <div class="form-group">
+              <label class="label">Imagem do produto</label>
+              <div [class]="invalidUpload ? 'ngx-dropzone-custom error' : 'ngx-dropzone-custom'"
+                ngx-dropzone [accept]="'image/*'" [maxFileSize]="2000000"
+                (change)="onSelect($event)" >
+                <ngx-dropzone-label>Escolha 3 imagens que melhor represente seu produto</ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                </ngx-dropzone-image-preview>
+              </div>
+              <p *ngIf="invalidUpload" class="caption-2 text-danger">
+                Upload de imagens obrigatório
+              </p>
             </div>
           </form>
         </nb-card-body>
+        <nb-card-footer class="create-offer-footer">
+          <button nbButton status="basic" size="medium" (click)="onReset()">Limpar</button>
+          <button nbButton status="primary" size="medium" (click)="onPublish()">Publicar</button>
+        </nb-card-footer>
       </nb-card>
     </div>
     <div class="create-offer-wrapper-right">
       <app-store-info [storeID]="storeID"></app-store-info>
+      <div class="create-offer-steps">
+        <div class="create-offer-steps-header">
+          <span class="subtitle">Passo a passo</span>
+        </div>
+        <button nbButton [status]="(stepDescriptionIncomplete$ | async) ?? 'basic'">Escolha o Titulo da Oferta</button>
+        <button nbButton [status]="(stepCategoryIncomplete$ | async) ?? 'basic'">Escolha a Categoria</button>
+        <button nbButton [status]="(stepDateRangeIncomplete$ | async) ?? 'basic'">Escolha o Período da Oferta</button>
+        <button nbButton [status]="(stepPriceOfferIncomplete$ | async) ?? 'basic'">Adicionar preço da oferta</button>
+        <button nbButton [status]="(stepAdditionalInfoIncomplete$ | async) ?? 'basic'">Informações adicionais</button>
+        <button nbButton [status]="(stepPhotosIncomplete$ | async) ?? 'basic'">Fotos do produto</button>
+      </div>
       <app-social-media></app-social-media>
     </div>
   </div>

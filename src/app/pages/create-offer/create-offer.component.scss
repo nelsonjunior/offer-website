@@ -1,14 +1,13 @@
 @use '../../../themes.scss' as *;
 
-@mixin ngx-layout() {
-  @include media-breakpoint-down(is) {
-    .row {
-      margin-left: -10px;
-      margin-right: -10px;
-    }
-  }
-}
 
+.create-offer-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
 
 .create-offer-content {
   width: 100%;
@@ -56,4 +55,81 @@
   flex-direction: column;
   margin-left: 10px;
   gap: 10px;
+}
+
+.form-group {
+  padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.form-group > textarea {
+  height: 150px;
+}
+
+.row {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.ngx-dropzone-custom {
+  width: 100%;
+  border-style: var(--input-border-style);
+  border-width: var(--input-border-width);
+  background-color: var(--input-basic-background-color);
+  border-color: var(--input-basic-border-color);
+  color: var(--input-basic-text-color);
+}
+
+ngx-dropzone-label {
+  color: var(--input-basic-placeholder-text-color);
+}
+
+.error{
+  border-color: var(--input-danger-border-color);
+}
+
+.create-offer-steps {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background: nb-theme(background-basic-color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.create-offer-steps > button {
+  width: 100%;
+}
+
+.input-range {
+  width: 100%;
+}
+
+.create-offer-steps-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+::-webkit-input-placeholder {
+  text-align: left;
+}
+
+:-moz-placeholder {
+  text-align: left;
 }

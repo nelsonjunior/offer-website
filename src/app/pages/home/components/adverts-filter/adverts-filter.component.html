@@ -10,10 +10,10 @@
     <div class="adverts-price-range">
       <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Min" [(ngModel)]="filter.minPrice"
         [nbTooltipDisabled]="!filter.minPrice" nbTooltip="{{filter.minPrice | currency:'BRL':'symbol':'1.2-2'}}"
-        [allowNegativeNumbers]="false" mask="separator.0" thousandSeparator=".">
+        currencyMask [options]="{ prefix: ''}">
       <input type="text" nbInput fullWidth fieldSize="tiny" placeholder="Max" [(ngModel)]="filter.maxPrice"
         [nbTooltipDisabled]="!filter.maxPrice" nbTooltip="{{filter.maxPrice | currency:'BRL':'symbol':'1.2-2'}}"
-        [allowNegativeNumbers]="false" mask="separator.0" thousandSeparator=".">
+        currencyMask [options]="{ prefix: ''}">
       <button nbButton outline size="tiny" (click)="changePrices()"><nb-icon icon="chevron-right"></nb-icon></button>
     </div>
   </div>

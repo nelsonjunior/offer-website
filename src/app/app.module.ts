@@ -15,6 +15,7 @@ import {
   NbFormFieldModule,
   NbInputModule,
   NbAutocompleteModule,
+  NbToastrModule,
 } from '@nebular/theme';
 import { TemplateComponent } from './pages/template/template.component';
 import { RouterModule } from '@angular/router';
@@ -45,6 +46,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } fro
     NbFormFieldModule,
     NbAutocompleteModule,
     NbSidebarModule.forRoot(),
+    NbToastrModule.forRoot(),
     HttpClientModule,
     SharedModule,
     NgxUiLoaderModule, // import NgxUiLoaderModule
