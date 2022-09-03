@@ -6,10 +6,10 @@
     <img class="skeleton" alt="" src="{{(storeDetail$ | async)?.image}}" width="60px" height="60px" />
     <div class="store-info-detail">
       <div class="store-info-detail-header">
-        <span class="subtitle">{{store.name}}</span>
+        <span class="subtitle {{!(storeDetail$ | async) ? 'skeleton skeleton-text' : ''}}">{{(storeDetail$ | async)?.name}}</span>
         <nb-icon icon="checkmark-circle-outline" status="success"></nb-icon>
       </div>
-      <p>{{(storeDetail$ | async)?.description}}</p>
+      <p class="{{!(storeDetail$ | async) ? 'skeleton skeleton-text' : ''}}">{{(storeDetail$ | async)?.description}}</p>
       <button nbButton ghost size="tiny">Mais ofertas da loja</button>
     </div>
   </div>

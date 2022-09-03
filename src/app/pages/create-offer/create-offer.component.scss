@@ -1,0 +1,59 @@
+@use '../../../themes.scss' as *;
+
+@mixin ngx-layout() {
+  @include media-breakpoint-down(is) {
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+}
+
+
+.create-offer-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-offer-breadcrumb {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.create-offer-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-offer-wrapper-left {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-offer-header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-offer-wrapper-right {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  gap: 10px;
+}

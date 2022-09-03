@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { OfferStore } from 'src/app/shared/model/offer.model';
 import { Store } from 'src/app/shared/model/store.model';
 import { StoreService } from 'src/app/shared/services/store.service';
 
@@ -12,7 +11,7 @@ import { StoreService } from 'src/app/shared/services/store.service';
 export class StoreInfoComponent implements OnInit {
 
   @Input()
-  store!: OfferStore
+  storeID!: string
 
   storeDetail$!: Observable<Store>;
 
@@ -21,7 +20,7 @@ export class StoreInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.storeDetail$ = this.storeService.getByID(this.store.id);
+    this.storeDetail$ = this.storeService.getByID(this.storeID);
   }
 
 }

@@ -1,9 +1,27 @@
 @use 'themes' as *;
 @use '@nebular/theme/styles/globals' as *;
 
+// framework component themes (styles tied to theme variables)
+// @import '~@nebular/theme/styles/globals';
+// @import '~@nebular/auth/styles/globals';
+
+// @import '~bootstrap/scss/functions';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins';
+// @import '~bootstrap/scss/grid';
 
 @include nb-install() {
-  @include nb-theme-global();
+
+   // framework global styles
+   @include nb-theme-global();
+  //  @include nb-auth-global();
+
+  //  @include ngx-layout();
+
+   // loading progress bar
+  //  @include ngx-pace-theme();
+
+  //  @include nb-overrides();
 };
 /* You can add global styles to this file, and also import other style files */
 
@@ -20,7 +38,7 @@
   padding-top: 10px;
 }
 
-
+//  https://www.freecodecamp.org/news/how-to-build-skeleton-screens-using-css-for-better-user-experience/
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
 }
@@ -36,7 +54,7 @@
 
 .skeleton-text {
   width: 100%;
-  height: 0.7rem;
+  height: 100%;
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
 }

@@ -67,6 +67,10 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     this.clearSearch();
   }
 
+  goToCreateOffer(): void {
+    this.router.navigate(['create-offer']);
+  }
+
   searchSuggestions(event:any) {
     if (event.target.value.length < 3) {
       this.filteredOptions$ = of([]);

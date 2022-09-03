@@ -6,10 +6,11 @@ import { NbButtonModule, NbIconModule } from '@nebular/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SocialMediaComponent } from './components/social-media/social-media.component';
 import { SanitizerPipe } from './pipes/sanitizer.pipe';
+import { StoreInfoComponent } from './components/store-info/store-info.component';
 
 
 @NgModule({
-  declarations: [TruncatePipe, SocialMediaComponent, SanitizerPipe],
+  declarations: [TruncatePipe, SocialMediaComponent, StoreInfoComponent, SanitizerPipe],
   imports: [
     CommonModule,
     NbButtonModule,
@@ -24,7 +25,8 @@ import { SanitizerPipe } from './pipes/sanitizer.pipe';
     FontAwesomeModule,
     TruncatePipe,
     SanitizerPipe,
-    SocialMediaComponent
+    SocialMediaComponent,
+    StoreInfoComponent
   ],
 })
 export class SharedModule { }
