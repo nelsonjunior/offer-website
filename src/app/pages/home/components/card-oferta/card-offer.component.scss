@@ -84,3 +84,21 @@
   justify-content: space-around;
   align-items: center;
 }
+
+@media screen and (max-width: 400px) {
+
+  .card-offer-content {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card-offer-header-wrapper {
+    flex-direction: row;
+    height: 80px;
+  }
+
+  .card-offer-header-wrapper > img {
+    width: 80px;
+    height: 80px;
+  }
+}

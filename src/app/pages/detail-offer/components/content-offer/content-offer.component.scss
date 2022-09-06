@@ -60,3 +60,17 @@
   height: 290px;
 }
 
+@media screen and (max-width: 400px) {
+
+  .detail-offer-complements{
+    flex-direction: column;
+  }
+
+  .detail-offer-map {
+    width: 100%;
+  }
+
+  .detail-offer-comments {
+    width: 100%;
+  }
+}

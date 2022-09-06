@@ -22,4 +22,13 @@
   width: 240px;
 }
 
+@media screen and (max-width: 400px) {
+  .category-button, .nav-bar-actions {
+    display: none;
+  }
 
+  .search-input {
+    width: 100%;
+  }
+
+}

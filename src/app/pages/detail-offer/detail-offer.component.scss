@@ -90,3 +90,23 @@
   margin-left: 10px;
   gap: 10px;
 }
+
+@media screen and (max-width: 400px) {
+
+  .detail-offer-breadcrumb {
+    display: none;
+  }
+
+  .detail-offer-wrapper {
+    flex-direction: column;
+  }
+
+  .detail-offer-wrapper-left {
+    width: 100%;
+  }
+
+  .detail-offer-wrapper-right {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
