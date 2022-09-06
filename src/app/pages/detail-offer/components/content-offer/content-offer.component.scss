@@ -60,10 +60,11 @@
   height: 290px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 
   .detail-offer-complements{
     flex-direction: column;
+    gap: 10px;
   }
 
   .detail-offer-map {
@@ -72,5 +73,6 @@
 
   .detail-offer-comments {
     width: 100%;
+    height: 290px;
   }
 }

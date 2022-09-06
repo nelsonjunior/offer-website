@@ -91,7 +91,7 @@
   gap: 10px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 
   .detail-offer-breadcrumb {
     display: none;
@@ -99,6 +99,7 @@
 
   .detail-offer-wrapper {
     flex-direction: column;
+    gap: 10px;
   }
 
   .detail-offer-wrapper-left {

@@ -75,3 +75,17 @@
 h1, h3, h6 {
   margin: 0px;
 }
+
+
+@media screen and (max-width: 450px) {
+
+  .card-offer-detail-right {
+    gap: 5px;
+  }
+
+  .card-offer-detail-footer {
+    flex-direction: column;
+    height: 70px;
+    justify-content: flex-start;
+  }
+}
