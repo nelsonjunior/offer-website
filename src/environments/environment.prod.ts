@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api: 'http://localhost:4200/api/v1',
-  mapKey: 'API_KEY'
+  api: 'http://54.221.96.227:3000',
+  mapKey: 'AIzaSyDaSfPZjC-xLx5X5AuFD2qTek0PPH4vh_M'
 };
