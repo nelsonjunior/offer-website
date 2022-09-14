@@ -100,19 +100,17 @@ export class CreateOfferComponent implements OnInit {
       this.toastrService.danger('Tamanho máximo de arquivo é 2MB', 'Arquivo muito grande');
     }
 
-    this.uploadImageService.uploadImage(event.addedFiles[0])
+    this.uploadImageService.uploadFile(event.addedFiles[0])
     .pipe(
       catchError(() => {
+        this.toastrService.danger('Erro ao fazer upload da imagem', 'Erro');
         return of(null);
       })
-    ).subscribe((res: any) => {
-      console.log('res', res);
-      if(!res) {
-        this.toastrService.danger('Erro ao fazer upload da imagem', 'Erro');
-      }
+    ).subscribe(() => {
       this.files.push(...event.addedFiles);
       this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
       this.uploadLoading = false;
+      this.validateUpload();
     });
 
 	}

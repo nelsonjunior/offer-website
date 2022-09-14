@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api: 'http://localhost:4200/api/v1',
-  api_upload: 'https://upload.offer-117.shop/offer-upload-image-function',
+  api_upload: 'https://upload.offer-117.shop/offer-upload-function',
   mapKey: 'API_KEY'
 };
 
