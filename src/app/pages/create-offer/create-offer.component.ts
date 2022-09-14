@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { BehaviorSubject, combineLatestWith, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
 import { CreateOffer } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
@@ -40,6 +40,8 @@ export class CreateOfferComponent implements OnInit {
   stepPhotosIncomplete$ = this.photosStatus.asObservable();
 
   invalidUpload: boolean = false;
+
+  uploadLoading = false;
 
   constructor(
     private categoryService: CategoryServiceService,
@@ -92,22 +94,27 @@ export class CreateOfferComponent implements OnInit {
   }
 
   onSelect(event: any) {
+    this.uploadLoading = true;
 
     if(event.rejectedFiles.length > 0) {
       this.toastrService.danger('Tamanho máximo de arquivo é 2MB', 'Arquivo muito grande');
     }
 
-
-    console.log('onSelect', event);
-
-		this.files.push(...event.addedFiles);
-
-    this.uploadImageService.uploadFile(event.addedFiles[0])
-    .subscribe((res: any) => {
+    this.uploadImageService.uploadImage(event.addedFiles[0])
+    .pipe(
+      catchError(() => {
+        return of(null);
+      })
+    ).subscribe((res: any) => {
       console.log('res', res);
+      if(!res) {
+        this.toastrService.danger('Erro ao fazer upload da imagem', 'Erro');
+      }
+      this.files.push(...event.addedFiles);
+      this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
+      this.uploadLoading = false;
     });
 
-    this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
 	}
 
 	onRemove(event: any) {
