@@ -1,4 +1,4 @@
 export interface UrlFromUpload {
   url: string;
-  filename: string;
+  fileName: string;
 }

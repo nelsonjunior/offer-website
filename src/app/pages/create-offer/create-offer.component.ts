@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
-import { CreateOffer } from 'src/app/shared/model/offer.model';
+import { CreateOffer, OfferImage } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import { UploadImageService } from 'src/app/shared/services/upload-image.service';
@@ -21,7 +21,7 @@ export class CreateOfferComponent implements OnInit {
 
   categories$: Observable<Category[]> = this.categoryService.categories$;
 
-  files: File[] = [];
+  files: OfferImage[] = [];
 
   formCreateOffer: FormGroup;
 
@@ -100,14 +100,18 @@ export class CreateOfferComponent implements OnInit {
       this.toastrService.danger('Tamanho máximo de arquivo é 2MB', 'Arquivo muito grande');
     }
 
-    this.uploadImageService.uploadFile(event.addedFiles[0])
-    .pipe(
+    const file = event.addedFiles[0];
+    this.uploadImageService.uploadFile(file).pipe(
       catchError(() => {
         this.toastrService.danger('Erro ao fazer upload da imagem', 'Erro');
         return of(null);
       })
-    ).subscribe(() => {
-      this.files.push(...event.addedFiles);
+    ).subscribe((url) => {
+
+      if(!!url){
+        this.files.push(url);
+      }
+
       this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
       this.uploadLoading = false;
       this.validateUpload();
@@ -143,7 +147,7 @@ export class CreateOfferComponent implements OnInit {
         datePublish: start,
         dateExpire: end,
         storeID: this.storeID,
-        photos: this.files
+        images: this.files.map((file) => file.fileName)
       };
 
       this.offerService.publish(offer).subscribe(

@@ -50,6 +50,7 @@ export class OfferService {
   }
 
   publish(offer: CreateOffer): Observable<OfferShort> {
+    console.log(offer);
     return of({
       id: 1,
       description: offer.description,

@@ -23,7 +23,7 @@ export interface CreateOffer {
   price: number;
   lastPrice: number;
   storeID: string;
-  photos: File[];
+  images: string[];
 }
 
 export interface OfferDetail extends Offer {
@@ -71,4 +71,9 @@ export interface OfferFilter {
   rate?: number;
   orderBy?: number;
   term?: string;
+}
+
+export interface OfferImage {
+  fileName: string;
+  file: File;
 }

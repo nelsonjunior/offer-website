@@ -98,7 +98,7 @@
                 <ngx-dropzone-label>Escolha 3 imagens que melhor represente seu produto</ngx-dropzone-label>
                 <ngx-dropzone-image-preview
                   ngProjectAs="ngx-dropzone-preview"
-                  *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                  *ngFor="let f of files" [file]="f.file" [removable]="true" (removed)="onRemove(f)">
                 </ngx-dropzone-image-preview>
               </div>
               <p *ngIf="invalidUpload" class="caption-2 text-danger">
