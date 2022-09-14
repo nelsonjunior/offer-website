@@ -90,8 +90,9 @@
             <div class="form-group">
               <label class="label">Imagem do produto</label>
               <div [class]="invalidUpload ? 'ngx-dropzone-custom error' : 'ngx-dropzone-custom'"
-                ngx-dropzone [accept]="'image/*'" [maxFileSize]="2000000"
+                ngx-dropzone [accept]="'image/jpeg'" [maxFileSize]="2000000"
                 nbSpinnerStatus="info"
+                [multiple]="false"
                 [nbSpinner]="uploadLoading"
                 (change)="onSelect($event)" >
                 <ngx-dropzone-label>Escolha 3 imagens que melhor represente seu produto</ngx-dropzone-label>
