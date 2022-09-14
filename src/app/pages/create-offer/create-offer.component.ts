@@ -7,6 +7,7 @@ import { Category } from 'src/app/shared/model/category.model';
 import { CreateOffer } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
+import { UploadImageService } from 'src/app/shared/services/upload-image.service';
 import FormsUtils from 'src/app/shared/utils/forms.util';
 
 @Component({
@@ -45,7 +46,8 @@ export class CreateOfferComponent implements OnInit {
     private toastrService: NbToastrService,
     private offerService: OfferService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private uploadImageService: UploadImageService
   ) {
     this.formCreateOffer = this.fb.group({
       description: ['', Validators.required],
@@ -95,7 +97,15 @@ export class CreateOfferComponent implements OnInit {
       this.toastrService.danger('Tamanho máximo de arquivo é 2MB', 'Arquivo muito grande');
     }
 
+
+    console.log('onSelect', event);
+
 		this.files.push(...event.addedFiles);
+
+    this.uploadImageService.uploadFile(event.addedFiles[0])
+    .subscribe((res: any) => {
+      console.log('res', res);
+    });
 
     this.photosStatus.next(this.files.length > 0 ? 'success' : 'basic');
 	}

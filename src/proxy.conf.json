@@ -1,4 +1,16 @@
 {
+
+  "/api/v1/upload": {
+    "target": "https://9q4wbuy90j.execute-api.us-east-1.amazonaws.com/dev/offer-upload-function",
+    "secure": true
+  },
+  "/api/v1/bucket/*": {
+    "target": "https://offer-upload-images.s3.amazonaws.com",
+    "secure": true,
+    "pathRewrite": {
+      "^/api/v1": ""
+    }
+  },
   "/api/v1/*": {
     "target": "http://localhost:3000",
     "secure": false,
