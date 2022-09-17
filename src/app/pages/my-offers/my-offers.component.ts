@@ -72,7 +72,7 @@ export class MyOffersComponent implements OnInit {
   }
 
   confirmDelete(offer: Offer): void {
-    this.offerService.delete(offer.id).subscribe(
+    this.offerService.delete(offer.offerID).subscribe(
       () => {
         this.toastrService.success(`Oferta ${offer.description} excluída com sucesso`, 'Sucesso');
         this.searchOffers();

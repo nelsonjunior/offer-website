@@ -81,7 +81,7 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
       return;
     };
 
-    this.filteredOptions$ = this.offerService.search(event.target.value).pipe(
+    this.filteredOptions$ = this.offerService.suggestions(event.target.value).pipe(
       tap(_ => event.target.click()),
       map(({result}) => result)
     );

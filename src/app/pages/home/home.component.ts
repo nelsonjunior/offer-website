@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbLayoutScrollService } from '@nebular/theme';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Offer, OfferFilter } from 'src/app/shared/model/offer.model';
+import { HiddenParamService } from 'src/app/shared/services/hidden-param.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import ArraysUtils from 'src/app/shared/utils/arrays.util';
 
@@ -20,9 +22,13 @@ export class HomeComponent {
     pageToLoadNext: 1,
   };
 
+  @ViewChild(InfiniteScrollDirective)
+  scrollOffers!: InfiniteScrollDirective;
+
   pageSize = 9;
 
   filter: OfferFilter = {
+    term: '',
     orderBy: 0,
   };
 
@@ -30,7 +36,8 @@ export class HomeComponent {
     private activatedRoute: ActivatedRoute,
     private offerService: OfferService,
     private scrollService: NbLayoutScrollService,
-    private router: Router
+    private router: Router,
+    private hiddenParam: HiddenParamService
   ) {
 
     this.activatedRoute.queryParams.subscribe(params => {
@@ -39,7 +46,7 @@ export class HomeComponent {
 
         this.scrollService.scrollTo(0, 0);
 
-        this.filter = {...this.filter, term: term};
+        this.filter = {...this.filter, term: term ?? ''};
 
         this.initLoad();
     });
@@ -65,6 +72,10 @@ export class HomeComponent {
 
   onChangeFilter(filter: OfferFilter) {
 
+    this.scrollOffers.setup();
+
+    this.scrollService.scrollTo(0, 0);
+
     this.filter = {...filter, orderBy: this.filter.orderBy};
 
     this.initLoad();
@@ -76,7 +87,7 @@ export class HomeComponent {
 
     data.loading = true;
 
-    this.offerService.list(data.pageToLoadNext, this.pageSize, this.filter)
+    this.offerService.search(data.pageToLoadNext, this.pageSize, this.filter)
       .subscribe(newOffers => {
         data.offers.push(...ArraysUtils.chunk(newOffers.result, 3));
         data.loading = false;
@@ -85,6 +96,7 @@ export class HomeComponent {
   }
 
   openDetail(offer: Offer): void {
+    this.hiddenParam.setParam(offer);
     this.router.navigate(['/offer', offer.slug]);
   }
 

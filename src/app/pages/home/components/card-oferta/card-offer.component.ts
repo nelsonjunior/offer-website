@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Offer } from 'src/app/shared/model/offer.model';
 import { faFire, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -26,6 +27,10 @@ export class CardOfferComponent implements OnInit {
 
   onClickCard(): void {
     this.clickCard.emit(this.offer);
+  }
+
+  getImage(): string {
+    return `${environment.images_bucket}/${this.offer.offerID}/${this.offer.images[0]}`;
   }
 
 }

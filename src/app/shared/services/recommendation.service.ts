@@ -11,7 +11,7 @@ export class RecommendationService {
 
   constructor(private http: HttpClient) {}
 
-  getByOfferID(id: number, page: number = 1, limit: number = 5): Observable<Recommendation[]> {
-    return this.http.get<Recommendation[]>(`${environment.api}/offers/${id}/recommendations/?_page${page}&_limit=${limit}`);
+  getByOfferID(offerID: string, page: number = 1, limit: number = 5): Observable<Recommendation[]> {
+    return this.http.get<Recommendation[]>(`${environment.api}/offers/${offerID}/recommendations/?_page${page}&_limit=${limit}`);
   }
 }

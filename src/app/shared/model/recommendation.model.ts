@@ -1,5 +1,5 @@
 export interface Recommendation {
-  id: number;
+  offerID: string;
   description: string;
   slug: string;
   price: number;

@@ -2,7 +2,10 @@
   <nb-card>
     <nb-card-body class="card-offer-detail-body">
       <div class="card-offer-detail-left">
-        <img class="skeleton" src="{{offer.image}}"/>
+        <app-images-swiper
+          class="images-swiper"
+          [images]="offer.images"
+          [offerID]="offer.offerID"></app-images-swiper>
       </div>
       <div class="card-offer-detail-right">
         <div class="card-offer-detail-header">

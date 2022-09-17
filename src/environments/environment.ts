@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   api: 'http://localhost:4200/api/v1',
   api_upload: 'https://upload.offer-117.shop/offer-upload-function',
+  images_bucket: 'https://offer-images-public.s3.amazonaws.com',
   mapKey: 'API_KEY'
 };
 

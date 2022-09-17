@@ -1,36 +1,32 @@
 import { Category } from "./category.model";
 
 export interface OfferShort {
-  id: number;
+  offerID: string;
   description: string;
 }
 
 export interface Offer extends OfferShort {
   slug: string;
   price: number;
-  image: string;
+  images: string[];
   tag?: string;
   metrics: OfferMetrics;
   store: OfferStore;
+  lastPrice: number;
+  category: Category;
+  additionalInformation: string;
 }
 
 export interface CreateOffer {
   description: string;
+  store: OfferStore;
   category: Category;
   additionalInformation: string;
   datePublish: Date;
   dateExpire: Date;
   price: number;
   lastPrice: number;
-  storeID: string;
   images: string[];
-}
-
-export interface OfferDetail extends Offer {
-  lastPrice: number;
-  category: Category;
-  additionalInformation: string;
-  location: OfferLocation;
 }
 
 export interface OfferLocation {
@@ -49,7 +45,7 @@ export interface OfferMetrics {
 }
 
 export interface OfferStore {
-  id: string;
+  storeID: string;
   name: string;
 }
 

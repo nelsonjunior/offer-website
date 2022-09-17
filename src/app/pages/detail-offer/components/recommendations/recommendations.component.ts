@@ -11,7 +11,7 @@ import { RecommendationService } from 'src/app/shared/services/recommendation.se
 export class RecommendationsComponent {
 
   @Input()
-  offerID!: number;
+  offerID!: string;
 
   recommendation$: Observable<Recommendation[]>;
 

@@ -9,7 +9,8 @@ import { NbCardModule, NbListModule } from '@nebular/theme';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ContentOfferComponent } from './components/content-offer/content-offer.component';
-
+import { ImagesSwiperComponent } from './components/images-swiper/images-swiper.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,15 @@ import { ContentOfferComponent } from './components/content-offer/content-offer.
     CardOfferDetailComponent,
     RecommendationsComponent,
     CommentsComponent,
-    ContentOfferComponent
+    ContentOfferComponent,
+    ImagesSwiperComponent
   ],
   imports: [
     CommonModule,
     DetailOfferRoutingModule,
     NbCardModule,
     NbListModule,
+    SwiperModule,
     SharedModule
   ],
   exports: [

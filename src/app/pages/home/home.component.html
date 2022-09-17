@@ -2,6 +2,7 @@
   <div class="offers-content">
     <app-offers-title (changeOrder)="onChangeOrder($event)"></app-offers-title>
     <div class="offers-itens"
+      #scrollOffers
       infiniteScroll
       [immediateCheck]="true"
       [infiniteScrollDistance]="2"

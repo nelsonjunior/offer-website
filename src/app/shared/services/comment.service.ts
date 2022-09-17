@@ -11,7 +11,7 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  getCommentsByOfferID(id: number, page: number = 1, limit: number = 5): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${environment.api}/offers/${id}/comments/?_page${page}&_limit=${limit}`);
+  getCommentsByOfferID(offerID: string, page: number = 1, limit: number = 5): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${environment.api}/offers/${offerID}/comments/?_page${page}&_limit=${limit}`);
   }
 }

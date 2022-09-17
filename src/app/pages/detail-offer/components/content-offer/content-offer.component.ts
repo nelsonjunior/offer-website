@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OfferDetail } from 'src/app/shared/model/offer.model';
+import { Offer } from 'src/app/shared/model/offer.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ContentOfferComponent implements OnInit {
 
   @Input()
-  offer!: OfferDetail;
+  offer!: Offer;
 
   constructor() { }
 
@@ -18,7 +18,9 @@ export class ContentOfferComponent implements OnInit {
   }
 
   getMapURL(): string {
-    return `https://www.google.com/maps/embed/v1/place?key=${environment.mapKey}&q=${this.offer.location.latitude},${this.offer.location.longitude}`;
+    // return `https://www.google.com/maps/embed/v1/place?key=${environment.mapKey}&q=${this.offer.location.latitude},${this.offer.location.longitude}`;
+
+    return `https://www.google.com/maps/embed/v1/place?key=${environment.mapKey}`;
   }
 
 }

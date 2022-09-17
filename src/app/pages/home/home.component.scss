@@ -26,8 +26,10 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-bottom: 10px;
+  padding-left: 10px;
+  gap: 10px;
 }
 
 .adverts-content {

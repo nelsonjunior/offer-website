@@ -29,7 +29,7 @@
                   [status]="getStatusInput(formCreateOffer.get('category'))"
                   size="medium" fullWidth placeholder="Selecionar Categoria">
                   <nb-option [value]="null">&nbsp;</nb-option>
-                  <nb-option *ngFor="let category of (categories$ | async)" [value]="category.id">{{category.name}}</nb-option>
+                  <nb-option *ngFor="let category of (categories$ | async)" [value]="category">{{category.name}}</nb-option>
                 </nb-select>
                 <p *ngIf="showErrosInput(formCreateOffer.get('category'))" class="caption-2 text-danger">
                   {{getErroMessage(formCreateOffer.get('category'))}}
@@ -54,7 +54,7 @@
             </div>
             <div class="row">
               <div class="form-group">
-                <label for="inputPrice" class="label">Valor do Produto</label>
+                <label for="inputPrice" class="label">Valor do Produto com desconto</label>
                 <input type="text" formControlName="price"
                   nbInput fullWidth id="inputPrice"
                   [status]="getStatusInput(formCreateOffer.get('price'))"
@@ -65,7 +65,7 @@
                 </p>
               </div>
               <div class="form-group">
-                <label for="inputPriceSale" class="label">Valor do Produto com desconto</label>
+                <label for="inputPriceSale" class="label">Valor do Produto</label>
                 <input type="text" formControlName="lastPrice"
                   nbInput fullWidth id="inputPriceSale"
                   [status]="getStatusInput(formCreateOffer.get('lastPrice'))"
@@ -114,7 +114,7 @@
       </nb-card>
     </div>
     <div class="create-offer-wrapper-right">
-      <app-store-info [storeID]="storeID"></app-store-info>
+      <app-store-info [storeID]="store.storeID"></app-store-info>
       <div class="create-offer-steps">
         <div class="create-offer-steps-header">
           <span class="subtitle">Passo a passo</span>

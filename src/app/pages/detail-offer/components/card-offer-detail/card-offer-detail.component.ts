@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OfferDetail } from 'src/app/shared/model/offer.model';
+import { Offer } from 'src/app/shared/model/offer.model';
 import { faFire, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card-offer-detail',
@@ -13,7 +14,7 @@ export class CardOfferDetailComponent implements OnInit {
   commentsIcon = faCommentDots;
 
   @Input()
-  offer!: OfferDetail;
+  offer!: Offer;
 
   constructor() { }
 

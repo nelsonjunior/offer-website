@@ -1,0 +1,23 @@
+<swiper
+  [slidesPerView]="1"
+  [spaceBetween]="50"
+  [pagination]="true"
+  [centeredSlides]="true"
+  [keyboard]="{
+    enabled: true
+  }"
+  [virtual]="true"
+  [zoom]="true"
+  [autoplay]="{
+    delay: 5000,
+    pauseOnMouseEnter: true,
+    disableOnInteraction: false
+  }"
+  class="my-swiper">
+
+  <ng-template swiperSlide *ngFor="let image of images">
+    <div class="swiper-zoom-container">
+      <img class="swiper-slide-img skeleton" [src]="getUrlImage(image)"/>
+    </div>
+  </ng-template>
+</swiper>

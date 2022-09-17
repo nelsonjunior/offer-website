@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CreateOffer, Offer, OfferDetail, OfferFilter, OfferResponse, OfferShort, OfferShortResponse } from '../model/offer.model';
+import { CreateOffer, Offer, OfferFilter, OfferResponse, OfferShortResponse } from '../model/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class OfferService {
     filter: OfferFilter
   ): Observable<OfferResponse> {
     return this.http
-      .get<Offer[]>(`${environment.api}/offers?_page=${page}&_limit=${limit}${!!filter.term ? `&description_like=${filter.term}` : ''}`)
+      .get<Offer[]>(`${environment.api}/offers/search?term=${filter.term}&page=${page}&limit=${limit}`)
       .pipe(
         map((offers) => {
           return {
@@ -29,17 +29,49 @@ export class OfferService {
       );
   }
 
-  search(term: string): Observable<OfferShortResponse> {
-    return this.http.get<Offer[]>(`${environment.api}/offers?q=${term}`).pipe(
-      map((offers) => {
-        return offers.filter((offer) => offer.description.includes(term));
-      }),
-      map((offers) => {
-        return offers.map((offer) => ({
-          id: offer.id,
-          description: offer.description,
-        } as OfferShort));
-      }),
+  search(
+    page: number,
+    limit: number,
+    filter: OfferFilter
+  ): Observable<OfferResponse> {
+
+    let query = `${environment.api}/offers/search?page=${page - 1}&limit=${limit}`;
+
+    if(!!filter.term) {
+      query += `&term=${filter.term}`;
+    }
+
+    if(!!filter.categories) {
+      query += `&categories=${filter.categories.map((category) => category.categoryID).join(',')}`;
+    }
+
+    if(!!filter.minPrice) {
+      query += `&minPrice=${filter.minPrice}`;
+    }
+
+    if(!!filter.maxPrice) {
+      query += `&maxPrice=${filter.maxPrice}`;
+    }
+
+    if(!!filter.rate) {
+      query += `&rate=${filter.rate}`;
+    }
+
+    return this.http
+      .get<Offer[]>(query)
+      .pipe(
+        map((offers) => {
+          return {
+            message: 'List offers',
+            result: offers,
+            page: page,
+          };
+        })
+      );
+  }
+
+  suggestions(term: string): Observable<OfferShortResponse> {
+    return this.http.get<Offer[]>(`${environment.api}/offers/suggestions?q=${term}`).pipe(
       map((offers) => {
         return {
           message: 'Search offers',
@@ -49,23 +81,20 @@ export class OfferService {
     );
   }
 
-  publish(offer: CreateOffer): Observable<OfferShort> {
+  publish(offer: CreateOffer): Observable<Offer> {
     console.log(offer);
-    return of({
-      id: 1,
-      description: offer.description,
-    });
+    return this.http.post<Offer>(`${environment.api}/offers`, offer);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${environment.api}/offers/${id}`);
+  delete(offerID: string): Observable<any> {
+    return this.http.delete(`${environment.api}/offers/${offerID}`);
   }
 
-  getBySlug(slug: string): Observable<OfferDetail> {
-    return this.http.get<OfferDetail[]>(`${environment.api}/offers?slug=${slug}`).pipe(
-      map((offers) => {
-        return offers[0];
-      })
-    );
+  getByID(offerID: string): Observable<Offer> {
+    return this.http.get<Offer>(`${environment.api}/offers/${offerID}`);
+  }
+
+  getBySlug(slug: string): Observable<Offer> {
+    return this.http.get<Offer>(`${environment.api}/offers/slug=${slug}`);
   }
 }

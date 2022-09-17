@@ -11,8 +11,8 @@ export class StoreService {
 
   constructor(private http: HttpClient) {}
 
-  getByID(id: string): Observable<Store> {
-    return this.http.get<Store>(`${environment.api}/stores/${id}`);
+  getByID(storeID: string): Observable<Store> {
+    return this.http.get<Store>(`${environment.api}/stores/${storeID}`);
   }
 
 }

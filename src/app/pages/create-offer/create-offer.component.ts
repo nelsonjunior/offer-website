@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of, switchMap, take, tap } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
 import { CreateOffer, OfferImage } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
@@ -17,7 +17,10 @@ import FormsUtils from 'src/app/shared/utils/forms.util';
 })
 export class CreateOfferComponent implements OnInit {
 
-  storeID = '631333b324b94db26b29e2c';
+  store = {
+    storeID: '6310325be99f8832684c1f4d',
+    name: 'Super Cell',
+  };
 
   categories$: Observable<Category[]> = this.categoryService.categories$;
 
@@ -54,7 +57,7 @@ export class CreateOfferComponent implements OnInit {
     this.formCreateOffer = this.fb.group({
       description: ['', Validators.required],
       category: [null, Validators.required],
-      dateRange: [null, Validators.required],
+      dateRange: [null],
       additionalInformation: ['', Validators.required],
       price: [null, Validators.required],
       lastPrice: [null, Validators.required],
@@ -136,26 +139,32 @@ export class CreateOfferComponent implements OnInit {
 
     if(this.formCreateOffer.valid && this.files.length > 0) {
 
-      const {start, end} = this.formCreateOffer.controls?.['dateRange'].value;
-
       const offer: CreateOffer = {
         description: this.formCreateOffer.controls?.['description'].value,
         category: this.formCreateOffer.controls?.['category'].value,
         additionalInformation: this.formCreateOffer.controls?.['additionalInformation'].value,
         price: this.formCreateOffer.controls?.['price'].value,
         lastPrice: this.formCreateOffer.controls?.['lastPrice'].value,
-        datePublish: start,
-        dateExpire: end,
-        storeID: this.storeID,
+        datePublish: this.formCreateOffer.controls?.['dateRange'].value?.start,
+        dateExpire: this.formCreateOffer.controls?.['dateRange'].value?.end,
+        store: this.store,
         images: this.files.map((file) => file.fileName)
       };
 
-      this.offerService.publish(offer).subscribe(
-        (offer) => {
+      this.offerService.publish(offer)
+      .pipe(
+        catchError(({error}) => {
+          error.details.forEach((detail: string) => {
+            this.toastrService.danger(detail, 'Erro');
+          });
+          return of(null);
+        }
+      )).subscribe((offer) => {
+        if(!!offer) {
           this.toastrService.success(`Oferta ${offer.description} publicada com sucesso`, 'Sucesso');
           this.router.navigate(['/my-offers']);
         }
-      )
+      });
 
     } else {
       this.toastrService.danger('Preencha todos os campos', 'Erro');

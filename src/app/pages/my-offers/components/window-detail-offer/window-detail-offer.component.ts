@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NbWindowRef } from '@nebular/theme';
-import { OfferDetail } from 'src/app/shared/model/offer.model';
+import { Offer } from 'src/app/shared/model/offer.model';
 
 @Component({
   selector: 'app-window-detail-offer',
@@ -9,12 +9,12 @@ import { OfferDetail } from 'src/app/shared/model/offer.model';
 })
 export class WindowDetailOfferComponent implements OnInit {
 
-  offer!: OfferDetail;
+  offer!: Offer;
 
   constructor(
     protected windowRef: NbWindowRef
   ) {
-    this.offer = this.windowRef?.config?.context as OfferDetail;
+    this.offer = this.windowRef?.config?.context as Offer;
   }
 
   ngOnInit(): void {

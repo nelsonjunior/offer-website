@@ -11,7 +11,7 @@ import { CommentService } from 'src/app/shared/services/comment.service';
 export class CommentsComponent {
 
   @Input()
-  offerID!: number;
+  offerID!: string;
 
   comments$: Observable<Comment[]>;
 
