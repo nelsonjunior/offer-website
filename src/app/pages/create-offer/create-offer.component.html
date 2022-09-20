@@ -121,7 +121,6 @@
         </div>
         <button nbButton [status]="(stepDescriptionIncomplete$ | async) ?? 'basic'">Escolha o Titulo da Oferta</button>
         <button nbButton [status]="(stepCategoryIncomplete$ | async) ?? 'basic'">Escolha a Categoria</button>
-        <button nbButton [status]="(stepDateRangeIncomplete$ | async) ?? 'basic'">Escolha o Período da Oferta</button>
         <button nbButton [status]="(stepPriceOfferIncomplete$ | async) ?? 'basic'">Adicionar preço da oferta</button>
         <button nbButton [status]="(stepAdditionalInfoIncomplete$ | async) ?? 'basic'">Informações adicionais</button>
         <button nbButton [status]="(stepPhotosIncomplete$ | async) ?? 'basic'">Fotos do produto</button>

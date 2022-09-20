@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NbDialogService, NbToastrService, NbWindowService } from '@nebular/theme';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
-import { filter, map, Observable, of, ReplaySubject, switchMap } from 'rxjs';
+import { filter, ReplaySubject, switchMap } from 'rxjs';
 import { Offer } from 'src/app/shared/model/offer.model';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import { WindowDetailOfferComponent } from './components/window-detail-offer/window-detail-offer.component';
@@ -13,11 +13,11 @@ import { WindowDetailOfferComponent } from './components/window-detail-offer/win
 })
 export class MyOffersComponent implements OnInit {
 
-  storeID = '631333b324b94db26b29e2c';
+  storeID = '6310325be99f8832684c1f4d';
 
   searchValue: string = '';
 
-  search = new ReplaySubject<string>();
+  search$ = new ReplaySubject<string>();
 
   @ViewChild('dialog')
   dialog!: TemplateRef<any>;
@@ -28,14 +28,17 @@ export class MyOffersComponent implements OnInit {
     { key: '', title: 'Ações', width: '10%' }
   ];
 
-  offers$:Observable<any> = of([]);
-
   configuration: Config = { ...DefaultConfig,
     paginationRangeEnabled: false,
     showDetailsArrow: true,
-    rows: 5,
+    rows: 8,
+  };
 
-  };;
+  offers$ = this.search$.asObservable().pipe(
+    switchMap((searchValue) => {
+      return this.offerService.list(this.storeID, searchValue);
+    })
+  );
 
   constructor(
     private offerService: OfferService,
@@ -46,22 +49,17 @@ export class MyOffersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.offers$ = this.search.asObservable().pipe(
-      switchMap((search) => {return this.offerService.list(1, 5, {term: search})}),
-      map((response) => response.result)
-    );
-
     this.searchOffers();
   }
 
   searchOffers(): void {
 
-    this.search.next(this.searchValue);
+    this.search$.next(this.searchValue);
   }
 
   clearSearch(): void {
     this.searchValue = '';
-    this.search.next('');
+    this.search$.next('');
   }
 
   onDelete(offer: Offer): void {

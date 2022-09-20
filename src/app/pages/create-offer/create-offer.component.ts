@@ -163,6 +163,7 @@ export class CreateOfferComponent implements OnInit {
         if(!!offer) {
           this.toastrService.success(`Oferta ${offer.description} publicada com sucesso`, 'Sucesso');
           this.router.navigate(['/my-offers']);
+
         }
       });
 

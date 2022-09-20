@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CreateOffer, Offer, OfferFilter, OfferResponse, OfferShortResponse } from '../model/offer.model';
+import { CreateOffer, Offer, OfferFilter, OfferPage, OfferResponse, OfferShortResponse } from '../model/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +12,10 @@ export class OfferService {
   constructor(private http: HttpClient) {}
 
   list(
-    page: number,
-    limit: number,
-    filter: OfferFilter
-  ): Observable<OfferResponse> {
-    return this.http
-      .get<Offer[]>(`${environment.api}/offers/search?term=${filter.term}&page=${page}&limit=${limit}`)
-      .pipe(
-        map((offers) => {
-          return {
-            message: 'List offers',
-            result: offers,
-            page: page,
-          };
-        })
-      );
+    storeID: string,
+    searchTerm: string = ''
+  ): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${environment.api}/offers/?searchTerm=${searchTerm}&storeID=${storeID}`);
   }
 
   search(

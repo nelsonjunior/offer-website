@@ -15,6 +15,7 @@ export interface Offer extends OfferShort {
   lastPrice: number;
   category: Category;
   additionalInformation: string;
+  status: string;
 }
 
 export interface CreateOffer {
@@ -53,6 +54,12 @@ export interface OfferResponse {
   message: string;
   result: Offer[];
   page: number;
+}
+
+export interface OfferPage {
+  offers: Offer[];
+  count: number;
+  lastPageKey?: string;
 }
 
 export interface OfferShortResponse {
