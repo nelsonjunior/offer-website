@@ -84,6 +84,6 @@ export class OfferService {
   }
 
   getBySlug(slug: string): Observable<Offer> {
-    return this.http.get<Offer>(`${environment.api}/offers/slug=${slug}`);
+    return this.http.get<Offer>(`${environment.api}/offers/slug/${slug}`);
   }
 }
