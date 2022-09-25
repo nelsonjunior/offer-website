@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CreateOfferRoutingModule } from './create-offer-routing.module';
 import { CreateOfferComponent } from './create-offer.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NbAlertModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbAlertModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbDialogConfig, NbDialogModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { NbDateFnsDateModule } from '@nebular/date-fns';
 import { ptBR } from 'date-fns/locale';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

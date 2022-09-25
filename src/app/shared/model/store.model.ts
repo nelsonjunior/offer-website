@@ -3,4 +3,7 @@ export interface Store {
   name: string;
   description: string;
   image: string;
+  latitude: number;
+  longitude: number;
+  status: string;
 }

@@ -1,0 +1,47 @@
+.register-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+}
+
+.register-footer-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  height: 40px;
+  width: 100%;
+}
+
+.form-group {
+  padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.form-group p {
+  margin: 0px;
+}
+
+.dialog-content {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -6,8 +6,9 @@ import {
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbLayoutScrollService, NbMenuItem, NbMenuService } from '@nebular/theme';
-import { filter, map, Observable, of, Subscription, tap } from 'rxjs';
+import { NbLayoutScrollService, NbMenuBag, NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map, Observable, of, Subscription, switchMap, switchScan, tap } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Category } from 'src/app/shared/model/category.model';
 import { OfferShort } from 'src/app/shared/model/offer.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
@@ -28,21 +29,44 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     },
   ];
 
+  profileOptions: NbMenuItem[] = [
+    {
+      title: 'Perfil',
+      icon: 'person-outline'
+    },
+    {
+      title: 'Minhas Ofertas',
+      icon: 'list-outline'
+    },
+    {
+      title: 'Sair',
+      icon: 'log-out-outline'
+    },
+  ];
+
   searchValue: string = '';
 
   unsubSearch!: Subscription;
 
   filteredOptions$: Observable<OfferShort[]> = of([]);
 
-  private readonly categoryTag = 'category-context-menu';
+  authenticated$ = this.authService.authenticated$;
+
+  categoryTag = 'category-context-menu';
+
+  profileTag = 'profile-context-menu';
+
 
   constructor(
     private router: Router,
     private offerService: OfferService,
     private categoryService: CategoryServiceService,
     private nbMenuService: NbMenuService,
-    private nbScrollService: NbLayoutScrollService
-  ) {}
+    private nbScrollService: NbLayoutScrollService,
+    private authService: AuthService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.nbMenuService
@@ -60,7 +84,28 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
 
       this.categories = categories;
     });
+
+    this.nbMenuService
+      .onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === this.profileTag),
+        map(({ item: { title } }) => title)
+      ).subscribe((title) => {
+          switch (title) {
+            case 'Perfil':
+              this.router.navigate(['profile']);
+              break;
+            case 'Minhas Ofertas':
+              this.router.navigate(['my-offers']);
+              break;
+            case 'Sair':
+              this.authService.logout();
+              break;
+          }
+        }
+      );
   }
+
 
   goToHome(): void {
     this.nbScrollService.scrollTo(0, 0);
@@ -105,6 +150,10 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     if(!!term) {
       this.router.navigate(['/'], { queryParams: { q: term } });
     }
+  }
+
+  openLogin(): void {
+    this.authService.openLogin();
   }
 
   ngOnDestroy(): void {

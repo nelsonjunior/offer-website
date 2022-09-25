@@ -1,0 +1,49 @@
+@use '../../../themes.scss' as *;
+
+.profile-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-breadcrumb {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.profile-map {
+  width: 100%;
+  height: 300px;
+  background: nb-theme(background-basic-color-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-map-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

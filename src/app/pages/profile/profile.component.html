@@ -1,0 +1,95 @@
+<div class="profile-content">
+  <div class="profile-breadcrumb">
+    <span class="subtitle-2">Perfil</span>
+    <nb-icon icon="chevron-right"></nb-icon>
+    <span class="subtitle-2">{{store.name}}</span>
+  </div>
+  <div class="profile-wrapper">
+    <nb-card>
+      <nb-card-header>
+        <h6>Perfil</h6>
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="formStore">
+
+          <div class="row">
+            <div class="form-group">
+              <label for="inputStoreID" class="label">ID</label>
+              <input id="inputStoreID" formControlName="storeID"
+                [status]="getStatusInput(formStore.get('storeID'))"
+                type="text" nbInput fullWidth/>
+              <p *ngIf="showErrosInput(formStore.get('storeID'))" class="caption-2 text-danger">
+                {{getErroMessage(formStore.get('storeID'))}}
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="inputName" class="label">Nome</label>
+              <input id="inputName" formControlName="name"
+                [status]="getStatusInput(formStore.get('name'))"
+                type="text" nbInput fullWidth/>
+              <p *ngIf="showErrosInput(formStore.get('name'))" class="caption-2 text-danger">
+                {{getErroMessage(formStore.get('name'))}}
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputDescription" class="label">Descrição da Loja</label>
+            <input id="inputDescription" formControlName="description"
+                [status]="getStatusInput(formStore.get('description'))"
+                type="text" nbInput fullWidth/>
+            <p *ngIf="showErrosInput(formStore.get('description'))" class="caption-2 text-danger">
+              {{getErroMessage(formStore.get('description'))}}
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="inputLatitude" class="label">Latitude</label>
+              <input id="inputLatitude" formControlName="latitude"
+                [status]="getStatusInput(formStore.get('latitude'))"
+                type="number" nbInput fullWidth/>
+              <p *ngIf="showErrosInput(formStore.get('latitude'))" class="caption-2 text-danger">
+                {{getErroMessage(formStore.get('latitude'))}}
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="inpuLongitude" class="label">Longitude</label>
+              <input id="inpuLongitude" formControlName="longitude"
+                [status]="getStatusInput(formStore.get('longitude'))"
+                type="number" nbInput fullWidth/>
+              <p *ngIf="showErrosInput(formStore.get('longitude'))" class="caption-2 text-danger">
+                {{getErroMessage(formStore.get('longitude'))}}
+              </p>
+            </div>
+            <button nbButton status="success" size="medium" (click)="onUpdateMap()">
+              <nb-icon icon="refresh-outline"></nb-icon>
+            </button>
+          </div>
+
+          <div class="profile-map">
+            <div class="profile-map-header">
+              <span class="subtitle">Localização da Loja</span>
+            </div>
+            <iframe
+              width="100%"
+              height="100%"
+              style="border:0"
+              loading="lazy"
+              [src]="getMapURL() | sanitizer:'resourceUrl'">
+            </iframe>
+          </div>
+
+        </form>
+
+      </nb-card-body>
+      <nb-card-footer class="profile-footer">
+        <button nbButton status="basic" size="medium" (click)="onCancel()">Cancelar</button>
+        <button nbButton status="primary" size="medium" (click)="onUpdate()">Atualizar</button>
+      </nb-card-footer>
+    </nb-card>
+
+  </div>
+</div>

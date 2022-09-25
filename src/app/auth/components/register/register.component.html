@@ -1,0 +1,73 @@
+<form [formGroup]="formRegister">
+
+  <div class="login-content">
+    <span class="subtitle">Cadastre já e publique suas ofertas.</span>
+
+    <div class="form-group">
+      <label for="inputStore" class="label">Nome da Loja</label>
+      <input id="inputStore" formControlName="storeName"
+        fullWidth
+        [status]="getStatusInput(formRegister.get('storeName'))"
+        type="text" nbInput fullWidth placeholder="Digite o nome da loja"/>
+      <p *ngIf="showErrosInput(formRegister.get('storeName'))" class="caption-2 text-danger">
+        {{getErroMessage(formRegister.get('storeName'))}}
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="label">E-mail</label>
+      <input id="inputEmail" formControlName="email"
+        fullWidth
+        [status]="getStatusInput(formRegister.get('email'))"
+        type="text" nbInput fullWidth placeholder="Digite seu e-mail"/>
+      <p *ngIf="showErrosInput(formRegister.get('email'))" class="caption-2 text-danger">
+        {{getErroMessage(formRegister.get('email'))}}
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="label">Password</label>
+      <input id="inputPassword" formControlName="password"
+        fullWidth
+        [status]="getStatusInput(formRegister.get('password'))"
+        type="password" nbInput fullWidth placeholder="Digite seu password"/>
+      <p *ngIf="showErrosInput(formRegister.get('password'))" class="caption-2 text-danger">
+        {{getErroMessage(formRegister.get('password'))}}
+      </p>
+    </div>
+    <p *ngIf="!!registerError" class="caption-2 text-danger">
+      {{registerError}}
+    </p>
+    <div class="form-group">
+      <button nbButton fullWidth status="primary" (click)="onRegister()">Criar Conta</button>
+    </div>
+
+
+    <div class="login-footer-content">
+      <span class="subtitle-2">Já tem conta?</span>
+      <button
+        (click)="onLogin()"
+        nbButton ghost status="info" size="small">FAÇA O LOGIN</button>
+    </div>
+  </div>
+
+</form>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="dialog-content">
+    <nb-card-header>Informe o código de cadastro</nb-card-header>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="inputCode" class="label">Código de confirmação</label>
+        <input id="inputCode" [(ngModel)]="confirmationCode"
+          fullWidth
+          type="text" nbInput fullWidth placeholder="Digite o código de confirmação"/>
+        <p *ngIf="!!confirmationCodeMessage" class="caption-2 text-danger">
+          {{confirmationCodeMessage}}
+        </p>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="dialog-actions">
+      <button nbButton status="primary" size="small"
+        (click)="onCloseConfirmationCode(ref, data)">Confirmar</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

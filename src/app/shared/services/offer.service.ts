@@ -71,7 +71,6 @@ export class OfferService {
   }
 
   publish(offer: CreateOffer): Observable<Offer> {
-    console.log(offer);
     return this.http.post<Offer>(`${environment.api}/offers`, offer);
   }
 

@@ -1,0 +1,42 @@
+<form [formGroup]="formLogin">
+
+  <div class="login-content">
+    <span class="subtitle">Olá! Faça login com seu e-mail.</span>
+
+    <div class="form-group">
+      <label for="inputEmail" class="label">E-mail</label>
+      <input id="inputEmail" formControlName="email"
+        fullWidth
+        [status]="getStatusInput(formLogin.get('email'))"
+        type="text" nbInput fullWidth placeholder="Digite seu e-mail"/>
+      <p *ngIf="showErrosInput(formLogin.get('email'))" class="caption-2 text-danger">
+        {{getErroMessage(formLogin.get('email'))}}
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="label">Password</label>
+      <input id="inputPassword" formControlName="password"
+        fullWidth
+        [status]="getStatusInput(formLogin.get('password'))"
+        type="password" nbInput fullWidth placeholder="Digite seu password"/>
+      <p *ngIf="showErrosInput(formLogin.get('password'))" class="caption-2 text-danger">
+        {{getErroMessage(formLogin.get('password'))}}
+      </p>
+    </div>
+    <p *ngIf="!!loginError" class="caption-2 text-danger">
+      {{loginError}}
+    </p>
+
+    <div class="form-group">
+      <button nbButton fullWidth status="primary" (click)="onLogin()">Entrar</button>
+    </div>
+
+
+    <div class="login-footer-content">
+      <span class="subtitle-2">Não tem uma conta?</span>
+      <button (click)="onRegister()"
+        nbButton ghost status="info" size="small">CRIAR CONTA</button>
+    </div>
+  </div>
+
+</form>
