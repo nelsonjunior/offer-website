@@ -16,14 +16,17 @@ import {
   NbInputModule,
   NbAutocompleteModule,
   NbToastrModule,
+  NbWindowModule,
+  NbDialogModule,
 } from '@nebular/theme';
 import { TemplateComponent } from './pages/template/template.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavegationBarComponent } from './pages/template/components/navegation-bar/navegation-bar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, TemplateComponent, NavegationBarComponent],
@@ -32,6 +35,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } fro
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbThemeModule.forRoot(),
@@ -47,13 +51,21 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule } fro
     NbAutocompleteModule,
     NbSidebarModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbDialogModule.forRoot(),
     HttpClientModule,
     SharedModule,
     NgxUiLoaderModule, // import NgxUiLoaderModule
     NgxUiLoaderHttpModule,
     NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

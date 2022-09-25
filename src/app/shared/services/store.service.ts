@@ -15,4 +15,8 @@ export class StoreService {
     return this.http.get<Store>(`${environment.api}/stores/${storeID}`);
   }
 
+  update(store: Store): Observable<Store> {
+    return this.http.put<Store>(`${environment.api}/stores/${store.storeID}`, store);
+  }
+
 }

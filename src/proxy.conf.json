@@ -32,6 +32,14 @@
       "^/api/v1": ""
     }
   },
+  "/api/v1/stores/*": {
+    "target": "https://api.offer-117.shop",
+    "secure": true,
+    "pathRewrite": {
+      "^/api/v1": ""
+    },
+    "changeOrigin": true
+  },
   "/api/v1/*": {
     "target": "http://localhost:3000",
     "secure": false,

@@ -8,6 +8,7 @@ import { SocialMediaComponent } from './components/social-media/social-media.com
 import { SanitizerPipe } from './pipes/sanitizer.pipe';
 import { StoreInfoComponent } from './components/store-info/store-info.component';
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { StoreResolver } from './resolvers/store.resolver';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
-import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of, switchMap, take, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { BehaviorSubject, catchError, combineLatestWith, map, Observable, of } from 'rxjs';
 import { Category } from 'src/app/shared/model/category.model';
 import { CreateOffer, OfferImage } from 'src/app/shared/model/offer.model';
+import { Store } from 'src/app/shared/model/store.model';
 import { CategoryServiceService } from 'src/app/shared/services/category-service.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import { UploadImageService } from 'src/app/shared/services/upload-image.service';
@@ -15,12 +16,9 @@ import FormsUtils from 'src/app/shared/utils/forms.util';
   templateUrl: './create-offer.component.html',
   styleUrls: ['./create-offer.component.scss']
 })
-export class CreateOfferComponent implements OnInit {
+export class CreateOfferComponent implements OnInit, AfterViewInit {
 
-  store = {
-    storeID: '6310325be99f8832684c1f4d',
-    name: 'Super Cell',
-  };
+  store: Store = this.activatedRoute.snapshot.data['store'];
 
   categories$: Observable<Category[]> = this.categoryService.categories$;
 
@@ -46,13 +44,18 @@ export class CreateOfferComponent implements OnInit {
 
   uploadLoading = false;
 
+  @ViewChild('dialog')
+  dialog!: TemplateRef<any>;
+
   constructor(
+    private activatedRoute: ActivatedRoute,
     private categoryService: CategoryServiceService,
     private toastrService: NbToastrService,
     private offerService: OfferService,
     private router: Router,
     private fb: FormBuilder,
-    private uploadImageService: UploadImageService
+    private uploadImageService: UploadImageService,
+    private dialogService: NbDialogService
   ) {
     this.formCreateOffer = this.fb.group({
       description: ['', Validators.required],
@@ -62,6 +65,25 @@ export class CreateOfferComponent implements OnInit {
       price: [null, Validators.required],
       lastPrice: [null, Validators.required],
     });
+  }
+
+  ngAfterViewInit(): void {
+
+    if(this.store.status === 'INACTIVE') {
+
+      const ref = this.dialogService.open(this.dialog, {
+        closeOnBackdropClick: false,
+        closeOnEsc: false,
+        context: {
+          user: 'user'
+        }
+      });
+
+      ref.onClose.subscribe(() => {
+        this.router.navigate(['/profile']);
+      });
+
+    }
   }
 
   ngOnInit(): void {

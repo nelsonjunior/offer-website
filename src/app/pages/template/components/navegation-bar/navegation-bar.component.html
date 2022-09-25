@@ -6,7 +6,7 @@
       nbButton
       size="medium"
       [nbContextMenu]="categories"
-      nbContextMenuTag="category-context-menu"
+      [nbContextMenuTag]="categoryTag"
       nbContextMenuTrigger="hover">
       <nb-icon icon="menu-2"></nb-icon>
       Categorias
@@ -43,10 +43,19 @@
       <button nbButton status="primary">
         <nb-icon icon="plus" (click)="goToCreateOffer()"></nb-icon>
       </button>
-      <button nbButton status="default">
+      <!-- <button nbButton status="default">
         <nb-icon icon="bell"></nb-icon>
-      </button>
-      <button nbButton outline="" status="primary">Entrar</button>
+      </button> -->
+      <button
+        *ngIf="!(authenticated$ | async)"
+        nbButton outline status="primary"
+        (click)="openLogin()">Entrar</button>
+        <button
+        *ngIf="(authenticated$ | async)"
+        nbButton outline status="basic"
+        [nbContextMenu]="profileOptions"
+        [nbContextMenuTag]="profileTag"
+        nbContextMenuTrigger="hover">Meu Perfil</button>
     </div>
   </div>
 

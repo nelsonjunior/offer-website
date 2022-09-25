@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreResolver } from 'src/app/shared/resolvers/store.resolver';
-import { CreateOfferComponent } from './create-offer.component';
+import { ProfileComponent } from './profile.component';
+import { StoreResolver } from '../../shared/resolvers/store.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: CreateOfferComponent,
+    component: ProfileComponent,
     resolve: {
       store: StoreResolver
     }
@@ -15,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CreateOfferRoutingModule { }
+export class ProfileRoutingModule {}
