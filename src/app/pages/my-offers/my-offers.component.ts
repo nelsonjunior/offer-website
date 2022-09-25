@@ -1,8 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogService, NbToastrService, NbWindowService } from '@nebular/theme';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { filter, ReplaySubject, switchMap } from 'rxjs';
 import { Offer } from 'src/app/shared/model/offer.model';
+import { Store } from 'src/app/shared/model/store.model';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import { WindowDetailOfferComponent } from './components/window-detail-offer/window-detail-offer.component';
 
@@ -13,7 +15,7 @@ import { WindowDetailOfferComponent } from './components/window-detail-offer/win
 })
 export class MyOffersComponent implements OnInit {
 
-  storeID = '6310325be99f8832684c1f4d';
+  store: Store = this.activatedRoute.snapshot.data['store'];
 
   searchValue: string = '';
 
@@ -36,11 +38,12 @@ export class MyOffersComponent implements OnInit {
 
   offers$ = this.search$.asObservable().pipe(
     switchMap((searchValue) => {
-      return this.offerService.list(this.storeID, searchValue);
+      return this.offerService.list(this.store.storeID, searchValue);
     })
   );
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private offerService: OfferService,
     private dialogService: NbDialogService,
     private windowService: NbWindowService,

@@ -10,7 +10,7 @@ export class NavegationBarService {
   searchTerm$ = new BehaviorSubject<string>('');
 
   constructor(
-    private router: Router,
+    private router: Router
   ) { }
 
   setSearchTerm(term: string): void {
@@ -22,4 +22,5 @@ export class NavegationBarService {
       this.router.navigate(['/']);
     }
   }
+
 }

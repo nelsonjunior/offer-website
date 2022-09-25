@@ -7,7 +7,11 @@ export const environment = {
   api: 'http://localhost:4200/api/v1',
   api_upload: 'https://upload.offer-117.shop/offer-upload-function',
   images_bucket: 'https://offer-images-public.s3.amazonaws.com',
-  mapKey: 'API_KEY'
+  mapKey: 'AIzaSyCtalJi24kpS6SKQriHUD5nBSEndLKy43o',
+  cognito: {
+    userPoolId: 'us-east-1_JIbr3G8CW',
+    userPoolWebClientId: 'pk8poqrf2f8rc7mi6lrfgnjrd',
+  }
 };
 
 /*

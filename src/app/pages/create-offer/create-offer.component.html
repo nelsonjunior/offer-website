@@ -114,7 +114,7 @@
       </nb-card>
     </div>
     <div class="create-offer-wrapper-right">
-      <app-store-info [storeID]="store.storeID"></app-store-info>
+      <app-store-info [store]="store"></app-store-info>
       <div class="create-offer-steps">
         <div class="create-offer-steps-header">
           <span class="subtitle">Passo a passo</span>
@@ -129,3 +129,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <h6>Loja Inativa</h6>
+    </nb-card-header>
+    <nb-card-body>Você precisa completar o cadastro da sua loja para publicar uma oferta</nb-card-body>
+    <nb-card-footer class="dialog-footer">
+      <button nbButton status="primary" (click)="ref.close()">Atualizar cadastro</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
