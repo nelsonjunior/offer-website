@@ -4,7 +4,7 @@
   </div>
   <nb-list>
     <nb-list-item class="recommendation-item" *ngFor="let r of (recommendation$ | async)">
-        <img class="skeleton" [src]="r.image" width="60" height="60" />
+        <img class="skeleton" [src]="getUrlImage(r)" width="60" height="60" />
         <div class="recommendation-item-info">
           <span class="subtitle-2">{{r.description | truncate:[40]}}</span>
           <span class="h6">{{r.price | currency:'BRL':'symbol':'1.2-2'}}</span>

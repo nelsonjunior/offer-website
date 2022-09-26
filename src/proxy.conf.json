@@ -11,15 +11,25 @@
       "^/api/v1": ""
     }
   },
+  "/api/v1/*": {
+    "target": "https://api.offer-117.shop",
+    "changeOrigin": true,
+    "secure": true,
+    "pathRewrite": {
+      "^/api/v1": ""
+    }
+  },
   "/api/v1/offers/suggestions": {
-    "target": "http://localhost:8100",
-    "secure": false,
+    "target": "https://api.offer-117.shop",
+    "changeOrigin": true,
+    "secure": true,
     "pathRewrite": {
       "^/api/v1": ""
     }
   },
   "/api/v1/offers/search": {
-    "target": "http://localhost:8100",
+    "target": "https://api.offer-117.shop",
+    "changeOrigin": true,
     "secure": false,
     "pathRewrite": {
       "^/api/v1": ""
@@ -39,12 +49,5 @@
       "^/api/v1": ""
     },
     "changeOrigin": true
-  },
-  "/api/v1/*": {
-    "target": "http://localhost:3000",
-    "secure": false,
-    "pathRewrite": {
-      "^/api/v1": ""
-    }
   }
 }

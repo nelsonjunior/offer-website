@@ -53,6 +53,8 @@ export class MyOffersComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchOffers();
+
+    console.log('store', this.store);
   }
 
   searchOffers(): void {

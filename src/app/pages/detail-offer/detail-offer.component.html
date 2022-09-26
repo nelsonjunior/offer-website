@@ -8,11 +8,11 @@
   </div>
   <div class="detail-offer-wrapper">
     <div class="detail-offer-wrapper-left">
-      <app-content-offer [offer]="offer"></app-content-offer>
+      <app-content-offer [offer]="offer" [store]="(store$ |async) ?? storeOffer"></app-content-offer>
     </div>
     <div class="detail-offer-wrapper-right">
       <app-store-info [store]="(store$ |async) ?? storeOffer" ></app-store-info>
-      <app-recommendations [offerID]="offer.offerID"></app-recommendations>
+      <app-recommendations [description]="offer.description"></app-recommendations>
       <app-social-media></app-social-media>
     </div>
   </div>

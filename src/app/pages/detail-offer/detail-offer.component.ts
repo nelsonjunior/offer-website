@@ -34,11 +34,9 @@ export class DetailOfferComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-  }
-
-  getMapURL(): string {
-    // return `https://www.google.com/maps/embed/v1/place?key=${environment.mapKey}&q=${this.offer.location.latitude},${this.offer.location.longitude}`;
-    return `https://www.google.com/maps/embed/v1/place?key=${environment.mapKey}`;
+    this.store$.subscribe((store) => {
+      this.storeOffer = store;
+    });
   }
 
 }
