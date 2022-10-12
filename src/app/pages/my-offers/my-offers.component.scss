@@ -92,3 +92,21 @@
   justify-content: flex-end;
   gap: 10px;
 }
+
+
+@media screen and (max-width: 768px) {
+
+  .my-offers-wrapper {
+    flex-direction: column;
+  }
+
+  .my-offers-wrapper-left {
+    width: 100%;
+  }
+
+  .my-offers-wrapper-right {
+    width: 100%;
+    margin-left: 0;
+  }
+
+}
