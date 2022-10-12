@@ -53,8 +53,6 @@ export class MyOffersComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchOffers();
-
-    console.log('store', this.store);
   }
 
   searchOffers(): void {
@@ -93,7 +91,10 @@ export class MyOffersComponent implements OnInit {
             maximize: false,
             fullScreen: false
           },
-          context: offerDetail
+          context: {
+            offer: offerDetail,
+            store: this.store
+          }
         });
     });
   }
