@@ -37,25 +37,29 @@
 
     </nb-autocomplete>
     <div class="nav-bar-actions">
-      <button nbButton status="basic" (click)="searchOffers()">
+      <button class="btn-search" nbButton status="basic" (click)="searchOffers()">
         <nb-icon icon="search"></nb-icon>
       </button>
-      <button nbButton status="primary">
+      <button class="btn-create" nbButton status="primary">
         <nb-icon icon="plus" (click)="goToCreateOffer()"></nb-icon>
       </button>
-      <!-- <button nbButton status="default">
-        <nb-icon icon="bell"></nb-icon>
-      </button> -->
       <button
         *ngIf="!(authenticated$ | async)"
         nbButton outline status="primary"
-        (click)="openLogin()">Entrar</button>
+        (click)="openLogin()">
+        <nb-icon *ngIf="mobile" icon="log-in-outline"></nb-icon>
+        <span *ngIf="!mobile">Entrar</span>
+      </button>
         <button
         *ngIf="(authenticated$ | async)"
         nbButton outline status="basic"
         [nbContextMenu]="profileOptions"
         [nbContextMenuTag]="profileTag"
-        nbContextMenuTrigger="hover">Meu Perfil</button>
+        nbContextMenuTrigger="hover"
+        (mouseenter)="hoverMenu()">
+        <nb-icon *ngIf="mobile" icon="menu"></nb-icon>
+        <span *ngIf="!mobile">Meu Perfil</span>
+        </button>
     </div>
   </div>
 

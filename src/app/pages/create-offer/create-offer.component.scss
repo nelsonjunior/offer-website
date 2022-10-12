@@ -115,3 +115,27 @@ ngx-dropzone-label {
   flex-direction: row;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 768px) {
+
+  .create-offer-wrapper {
+    flex-direction: column;
+  }
+
+  .create-offer-wrapper-left {
+    width: 100%;
+  }
+
+  .create-offer-wrapper-right {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .row {
+    flex-direction: column;
+  }
+}

@@ -33,4 +33,8 @@ export class CardOfferComponent implements OnInit {
     return `${environment.images_bucket}/${this.offer.offerID}/${this.offer.images[0]}`;
   }
 
+  onLoadImage(event: any): void {
+    event.target.classList.remove('skeleton');
+  }
+
 }

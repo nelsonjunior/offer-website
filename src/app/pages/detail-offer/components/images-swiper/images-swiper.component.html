@@ -17,7 +17,8 @@
 
   <ng-template swiperSlide *ngFor="let image of images">
     <div class="swiper-zoom-container">
-      <img class="swiper-slide-img skeleton" [src]="getUrlImage(image)"/>
+    <img class="swiper-slide-img skeleton" [src]="getUrlImage(image)"
+      (load)="onLoadImage($event)" />
     </div>
   </ng-template>
 </swiper>

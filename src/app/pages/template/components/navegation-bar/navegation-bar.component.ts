@@ -1,13 +1,14 @@
 import {
   Component,
   EventEmitter,
+  HostListener,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { NbLayoutScrollService, NbMenuBag, NbMenuItem, NbMenuService } from '@nebular/theme';
-import { filter, map, Observable, of, Subscription, switchMap, switchScan, tap } from 'rxjs';
+import { NbLayoutScrollService, NbMenuItem, NbMenuService } from '@nebular/theme';
+import { filter, map, Observable, of, Subscription, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Category } from 'src/app/shared/model/category.model';
 import { OfferShort } from 'src/app/shared/model/offer.model';
@@ -29,10 +30,14 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
     },
   ];
 
-  profileOptions: NbMenuItem[] = [
+  mobileProfileOptions: NbMenuItem[] = [
+    {
+      title: 'Publicar',
+      icon: 'plus'
+    },
     {
       title: 'Perfil',
-      icon: 'person-outline'
+      icon: 'person-outline',
     },
     {
       title: 'Minhas Ofertas',
@@ -43,6 +48,23 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
       icon: 'log-out-outline'
     },
   ];
+
+  defaultProfileOptions: NbMenuItem[] = [
+    {
+      title: 'Perfil',
+      icon: 'person-outline',
+    },
+    {
+      title: 'Minhas Ofertas',
+      icon: 'list-outline'
+    },
+    {
+      title: 'Sair',
+      icon: 'log-out-outline'
+    },
+  ];
+
+  profileOptions: NbMenuItem[] = this.defaultProfileOptions;
 
   searchValue: string = '';
 
@@ -56,6 +78,7 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
 
   profileTag = 'profile-context-menu';
 
+  mobile = false;
 
   constructor(
     private router: Router,
@@ -69,6 +92,11 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    if (window.innerWidth <= 768) {
+      this.mobile = true;
+    }
+
     this.nbMenuService
       .onItemClick()
       .pipe(
@@ -92,6 +120,9 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
         map(({ item: { title } }) => title)
       ).subscribe((title) => {
           switch (title) {
+            case 'Publicar':
+              this.router.navigate(['create-offer']);
+              break;
             case 'Perfil':
               this.router.navigate(['profile']);
               break;
@@ -106,6 +137,17 @@ export class NavegationBarComponent implements OnInit, OnDestroy {
       );
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.mobile = window.innerWidth <= 768;
+  }
+
+  hoverMenu(): void {
+
+    this.profileOptions = window.innerWidth <= 768
+      ? this.mobileProfileOptions : this.defaultProfileOptions;
+
+  }
 
   goToHome(): void {
     this.nbScrollService.scrollTo(0, 0);

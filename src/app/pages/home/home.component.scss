@@ -54,7 +54,8 @@
 }
 
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 768px) {
+
   .adverts-content {
     display: none;
   }
@@ -62,6 +63,10 @@
   .offers-content {
     width: 100%;
   }
+
+}
+
+@media screen and (max-width: 450px) {
 
   .offers-itens-row {
     flex-direction: column;

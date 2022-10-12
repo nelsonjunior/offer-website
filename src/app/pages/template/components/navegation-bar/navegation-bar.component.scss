@@ -22,13 +22,28 @@
   width: 220px;
 }
 
-@media screen and (max-width: 450px) {
-  .category-button, .nav-bar-actions {
+@media screen and (max-width: 768px) {
+
+  .category-button, .btn-search {
     display: none;
+  }
+
+  .nav-bar-actions {
+    width: auto;
+    gap: 8px;
+    padding-left: 8px;
   }
 
   .search-input {
     width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .btn-create {
+    display: none;
   }
 
 }

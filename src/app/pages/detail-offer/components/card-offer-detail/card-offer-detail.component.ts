@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Offer } from 'src/app/shared/model/offer.model';
 import { faFire, faCommentDots } from '@fortawesome/free-solid-svg-icons';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card-offer-detail',

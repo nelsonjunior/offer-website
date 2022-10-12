@@ -20,6 +20,9 @@
 .card-offer-header-wrapper > img {
   width: 208px;
   height: 208px;
+  object-fit: contain;
+  background-color: white;
+  aspect-ratio: 4/3;
 }
 
 .card-offer-header-price {

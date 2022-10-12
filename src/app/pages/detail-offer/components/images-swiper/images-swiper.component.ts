@@ -29,4 +29,8 @@ export class ImagesSwiperComponent implements OnInit {
     return `${environment.images_bucket}/${this.offerID}/${image}`;
   }
 
+  onLoadImage(event: any): void {
+    event.target.classList.remove('skeleton');
+  }
+
 }
